@@ -1,30 +1,17 @@
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import { fetchWorkers } from "../../services/api";
 
 export const ControlForm = () => {
-  axios.defaults.baseURL = "http://localhost:3000/";
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   const [searchValue, setSearchValue] = useState("");
   const [foundUser, setFoundUser] = useState(null);
   const [workers, setWorkers] = useState([]);
+  // const [isOk, setIsOk] = useState(false);
 
   const searchInputRef = useRef();
   let alarm = "Not found";
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get("/worker");
-        setWorkers(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fetchUsers();
+    fetchWorkers(setWorkers);
     setTimeout(() => {
       if (searchInputRef) {
         searchInputRef.current.focus();
@@ -36,7 +23,9 @@ export const ControlForm = () => {
     const value = event.target.value;
     setSearchValue(value);
 
-    const worker = workers.find((worker) => worker.gadgets[0]?.sn === value);
+    const worker =
+      workers.find((worker) => worker?.gadgets[0]?.sn === value) ||
+      workers.find((worker) => worker?.gadgets[1]?.sn === value);
     setFoundUser(worker ? worker : null);
   };
 
@@ -49,9 +38,6 @@ export const ControlForm = () => {
     setSearchValue("");
     searchInputRef.current.focus();
   };
-
-  if (loading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error}</div>;
 
   return (
     <form style={{ marginTop: "50px" }} onSubmit={handleSubmit}>
@@ -72,12 +58,7 @@ export const ControlForm = () => {
       {foundUser ? (
         <div>
           <p>Найден пользователь: {foundUser.name}</p>
-          <img
-            src={foundUser?.imgUrl || ""}
-            alt="img"
-            width={200}
-            height={200}
-          />
+          <img src={foundUser?.image} alt="img" width={200} height={200} />
           {foundUser.gadgets &&
             foundUser.gadgets.map((item) => {
               return (
@@ -87,7 +68,7 @@ export const ControlForm = () => {
                   <p>{item.brand}</p>
                   <p>{item.model}</p>
                   <p>{item.sn}</p>
-                  <img src={item.imgUrl} alt="img" width={200} height={200} />
+                  <img src={item.image} alt="img" width={200} height={200} />
                 </div>
               );
             })}

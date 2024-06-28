@@ -1,141 +1,116 @@
-import { Link, useLocation } from "react-router-dom";
-import { useState, useRef } from "react";
-import axios from "axios";
-import { Button, TextField } from "@mui/material";
-import { Wrapper, Form } from "./NewGadgetForm.styled";
+import { useState } from "react";
 import PropTypes from "prop-types";
-import { Toaster, toast } from "react-hot-toast";
+import { createGadget } from "../../services/api";
 
 export const NewGadgetForm = ({ workerId }) => {
-  const location = useLocation();
-  const inputFileRef = useRef(null);
-  axios.defaults.baseURL = "http://localhost:3000/";
-
-  const [img, setImg] = useState(null);
-  const [formData, setFormData] = useState({
+  // const [users, setUsers] = useState([]);
+  // useEffect(() => {
+  //   getAll(setUsers);
+  // }, []);
+  const [gadgetData, setGadgetData] = useState({
     title: "",
     brand: "",
     model: "",
     sn: "",
+    image: "",
   });
 
-  const uploadedFile = img?.file.filename;
-  const src = `http://localhost:3000/uploads/${img?.file.filename}` || "";
 
   const reset = () => {
-    setFormData({ title: "", brand: "", model: "", sn: "" });
+    setGadgetData({ title: "", brand: "", model: "", sn: "", image: "" });
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleGadgetChange = (e) => {
+    const { name, value, files } = e.target;
+    setGadgetData((prevGadgetData) => ({
+      ...prevGadgetData,
+      [name]: files ? files[0] : value,
+    }));
   };
 
-  const handlerSubmit = (e) => {
+  const handleSubmitGadget = (e) => {
     e.preventDefault();
     const gadget = {
-      title: formData.title,
-      brand: formData.brand,
-      model: formData.model,
-      sn: formData.sn,
-      imgUrl: src,
+      title: gadgetData.title,
+      brand: gadgetData.brand,
+      model: gadgetData.model,
+      sn: gadgetData.sn,
+      image: gadgetData.image,
     };
 
-    const myPromise = axios.post(`/worker/${workerId}/gadgets`, gadget);
-    toast.promise(
-      myPromise,
-      {
-        loading: "Создание...",
-        success: "Успешно создано!",
-        error: "Ошибка",
-      },
-      {
-        style: {
-          minWidth: "250px",
-        },
-        success: {
-          duration: 2000,
-          icon: "✅",
-        },
-      }
-    );
+    createGadget(workerId, gadget);
+    // const updatedUsers = users.map((user) => {
+    //   if (user._id === workerId) {
+    //     return { ...user, gadgets: [...user.gadgets, response.data.gadget] };
+    //   }
+    //   return user;
+    // });
+    // setUsers(updatedUsers);
     reset();
   };
 
-  const handleChangeFile = async (e) => {
-    console.log(e.target.files);
-    try {
-      const formData = new FormData();
-      const file = e.target.files[0];
-      formData.append("image", file);
-      const { data } = await axios.post("/upload", formData);
-      console.log(data);
-      setImg(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
-    <Wrapper>
-      <Toaster />
-      <Link to={location?.state ?? "/workers"}>
-        <button>Назад</button>
-      </Link>
-      <Form onSubmit={handlerSubmit}>
-        <TextField
-          sx={{ marginBottom: "15px" }}
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleInputChange}
-          autoComplete="off"
-          label="title"
-          variant="outlined"
-        />
-        <TextField
-          sx={{ marginBottom: "15px" }}
-          type="text"
-          name="brand"
-          value={formData.brand}
-          onChange={handleInputChange}
-          autoComplete="off"
-          label="brand"
-        />
-
-        <TextField
-          sx={{ marginBottom: "15px" }}
-          type="text"
-          name="model"
-          value={formData.model}
-          onChange={handleInputChange}
-          autoComplete="off"
-          label="model"
-        />
-
-        <TextField
-          sx={{ marginBottom: "15px" }}
-          type="text"
-          name="sn"
-          value={formData.sn}
-          onChange={handleInputChange}
-          autoComplete="off"
-          label="sn"
-        />
-        <input
-          ref={inputFileRef}
-          type="file"
-          onChange={handleChangeFile}
-          hidden
-        />
-        <button onClick={() => inputFileRef.current.click()}>Img</button>
-
-        <Button type="submit" variant="contained" color="success">
-          Создать
-        </Button>
-      </Form>
-      <img src={uploadedFile ? src : ""} alt="img" width="300" height="300" />
-    </Wrapper>
+    <div>
+      <form onSubmit={handleSubmitGadget}>
+        <h2>Добавить гаджет пользователю</h2>
+        <div></div>
+        <div>
+          <label htmlFor="title">Название:</label>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            value={gadgetData.title}
+            onChange={handleGadgetChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="brand">Бренд:</label>
+          <input
+            id="brand"
+            name="brand"
+            type="text"
+            value={gadgetData.brand}
+            onChange={handleGadgetChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="model">Модель:</label>
+          <input
+            id="model"
+            name="model"
+            type="text"
+            value={gadgetData.model}
+            onChange={handleGadgetChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="sn">Серийный номер:</label>
+          <input
+            id="sn"
+            name="sn"
+            type="text"
+            value={gadgetData.sn}
+            onChange={handleGadgetChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="image">Photo:</label>
+          <input
+            id="image"
+            name="image"
+            type="text"
+            value={gadgetData.image}
+            onChange={handleGadgetChange}
+          />
+        </div>
+        <button type="submit">Отправить</button>
+      </form>
+    </div>
   );
 };
 

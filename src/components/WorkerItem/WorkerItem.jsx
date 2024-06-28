@@ -1,17 +1,8 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import axios from "axios";
+import { deleteWorker } from "../../services/api";
 
-export const WorkerItem = ({ index, name, position, id, imgUrl }) => {
-  axios.defaults.baseURL = "http://localhost:3000/";
-  const deleteWorker = async (id) => {
-    const { data } = await axios.delete(`/worker/${id}`);
-    console.log(data);
-    setTimeout(() => {
-      location.reload();
-    }, 1500);
-  };
-
+export const WorkerItem = ({ index, name, position, id, image }) => {
   return (
     <tr key={id}>
       <td>{index + 1}</td>
@@ -19,7 +10,12 @@ export const WorkerItem = ({ index, name, position, id, imgUrl }) => {
       <td>{name}</td>
       <td>{position}</td>
       <td>
-        <img src={imgUrl} alt="img" width={150} height={150} />
+        <img
+          src={image}
+          alt="img"
+          width={150}
+          height={150}
+        />
       </td>
       <td>{<Link to={`${id}`}>link</Link>}</td>
       <td>
@@ -37,7 +33,7 @@ export const WorkerItem = ({ index, name, position, id, imgUrl }) => {
 
 WorkerItem.propTypes = {
   name: PropTypes.string,
-  imgUrl: PropTypes.string,
+  image: PropTypes.string,
   position: PropTypes.string,
   id: PropTypes.string,
   index: PropTypes.number,

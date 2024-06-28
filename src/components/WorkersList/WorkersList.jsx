@@ -1,17 +1,11 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { getAll } from "../../services/api";
 import { WorkerItem } from "../../components";
 
 export const WorkersList = () => {
-  axios.defaults.baseURL = "http://localhost:3000/";
   const [workers, setWorkers] = useState(null);
-
-  const getAll = async () => {
-    const { data } = await axios.get("/worker");
-    setWorkers(data);
-  };
   useEffect(() => {
-    getAll();
+    getAll(setWorkers);
   }, []);
 
   return (
@@ -49,7 +43,7 @@ export const WorkersList = () => {
                 index={index}
                 name={person.name}
                 position={person.position}
-                imgUrl={person.imgUrl}
+                image={person.image}
               />
             ))}
         </tbody>
