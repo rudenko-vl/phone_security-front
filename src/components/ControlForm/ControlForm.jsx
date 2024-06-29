@@ -1,14 +1,26 @@
 import { useState, useEffect, useRef } from "react";
 import { fetchWorkers } from "../../services/api";
+import {
+  GadgetList,
+  Container,
+  Wrapper,
+  GadgetItem,
+  UserWrapper,
+  SearchInput,
+  Btn,
+  Error,
+  UserDescription,
+  GadgetDescription,
+  GadgetDescrItem,
+} from "./ControlForm.styled";
 
 export const ControlForm = () => {
   const [searchValue, setSearchValue] = useState("");
   const [foundUser, setFoundUser] = useState(null);
   const [workers, setWorkers] = useState([]);
-  // const [isOk, setIsOk] = useState(false);
+  const [isOk, setIsOk] = useState(null);
 
   const searchInputRef = useRef();
-  let alarm = "Not found";
 
   useEffect(() => {
     fetchWorkers(setWorkers);
@@ -18,6 +30,8 @@ export const ControlForm = () => {
       }
     }, 1000);
   }, []);
+
+  let interval;
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -31,51 +45,103 @@ export const ControlForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!searchValue) return;
+    setIsOk("ok");
+    if (foundUser) {
+      setIsOk("ok");
+    } else {
+      setIsOk("error");
+    }
+    setTimeout(() => {
+      resetForm();
+    }, interval || 3000);
   };
 
   const resetForm = () => {
     setFoundUser(null);
     setSearchValue("");
+    setIsOk("ok");
     searchInputRef.current.focus();
   };
 
   return (
-    <form style={{ marginTop: "50px" }} onSubmit={handleSubmit}>
-      <button type="button" onClick={resetForm}>
-        Clear
-      </button>
-      <div>
-        <label>
-          Введите код пользователя:
-          <input
-            ref={searchInputRef}
-            type="text"
-            value={searchValue}
-            onChange={handleInputChange}
-          />
-        </label>
-      </div>
-      {foundUser ? (
-        <div>
-          <p>Найден пользователь: {foundUser.name}</p>
-          <img src={foundUser?.image} alt="img" width={200} height={200} />
-          {foundUser.gadgets &&
-            foundUser.gadgets.map((item) => {
-              return (
-                <div key={item._id}>
-                  <h3>Gadget:</h3>
-                  <p>{item.title}</p>
-                  <p>{item.brand}</p>
-                  <p>{item.model}</p>
-                  <p>{item.sn}</p>
-                  <img src={item.image} alt="img" width={200} height={200} />
-                </div>
-              );
-            })}
-        </div>
-      ) : (
-        <h1>{alarm}</h1>
+    <Container>
+      <form onSubmit={handleSubmit}>
+        <Wrapper>
+          <label>
+            <SearchInput
+              ref={searchInputRef}
+              type="text"
+              value={searchValue}
+              onChange={handleInputChange}
+              placeholder="Поиск"
+            />
+          </label>
+          <Btn type="button" onClick={resetForm}>
+            Удалить
+          </Btn>
+        </Wrapper>
+      </form>
+      {isOk === "error" && (
+        <Error>
+          <h1>Неизвестное устройство!</h1>
+          <p>📵</p>
+          <p>👮‍♂️</p>
+        </Error>
       )}
-    </form>
+      {foundUser && (
+        <div
+          style={{
+            backgroundColor: "#4cff4c",
+            padding: "10px",
+          }}
+        >
+          <UserWrapper>
+            <UserDescription>
+              <p>Сотрудник:</p>
+              <h3>{foundUser.name}</h3>
+              <p>Должность:</p>
+              <h3>{foundUser.position}</h3>
+            </UserDescription>
+            <img
+              src={foundUser.image ? foundUser.image : "/avatar.png"}
+              alt="img"
+              width={150}
+              height={150}
+            />
+          </UserWrapper>
+          <GadgetList>
+            {foundUser.gadgets &&
+              foundUser.gadgets.map((item, index) => {
+                return (
+                  <GadgetItem key={item._id}>
+                    <h3>Гаджет {index + 1}:</h3>
+                    <GadgetDescription>
+                      <GadgetDescrItem>
+                        Бренд:
+                        <p>{item.brand}</p>
+                      </GadgetDescrItem>
+                      <GadgetDescrItem>
+                        Модель:
+                        <p>{item.model}</p>
+                      </GadgetDescrItem>
+                      <GadgetDescrItem>
+                        IMEI (S/N):
+                        <p>{item.sn}</p>
+                      </GadgetDescrItem>
+                    </GadgetDescription>
+                    <img
+                      src={item.image ? item.image : "/gadget.png"}
+                      alt="img"
+                      width={200}
+                      height={200}
+                    />
+                  </GadgetItem>
+                );
+              })}
+          </GadgetList>
+        </div>
+      )}
+    </Container>
   );
 };

@@ -1,12 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { createGadget } from "../../services/api";
+import { Form, Input, SubmitBtn } from "../NewWorkerForm/NewWorkerForm.styled";
 
 export const NewGadgetForm = ({ workerId }) => {
-  // const [users, setUsers] = useState([]);
-  // useEffect(() => {
-  //   getAll(setUsers);
-  // }, []);
   const [gadgetData, setGadgetData] = useState({
     title: "",
     brand: "",
@@ -14,7 +11,6 @@ export const NewGadgetForm = ({ workerId }) => {
     sn: "",
     image: "",
   });
-
 
   const reset = () => {
     setGadgetData({ title: "", brand: "", model: "", sn: "", image: "" });
@@ -39,77 +35,75 @@ export const NewGadgetForm = ({ workerId }) => {
     };
 
     createGadget(workerId, gadget);
-    // const updatedUsers = users.map((user) => {
-    //   if (user._id === workerId) {
-    //     return { ...user, gadgets: [...user.gadgets, response.data.gadget] };
-    //   }
-    //   return user;
-    // });
-    // setUsers(updatedUsers);
     reset();
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmitGadget}>
-        <h2>Добавить гаджет пользователю</h2>
+      <Form onSubmit={handleSubmitGadget}>
+        <h2>Добавить гаджет</h2>
         <div></div>
         <div>
           <label htmlFor="title">Название:</label>
-          <input
+          <Input
             id="title"
             name="title"
             type="text"
             value={gadgetData.title}
             onChange={handleGadgetChange}
             required
+            placeholder="Телефон/Смарт часы"
           />
         </div>
         <div>
           <label htmlFor="brand">Бренд:</label>
-          <input
+          <Input
             id="brand"
             name="brand"
             type="text"
             value={gadgetData.brand}
             onChange={handleGadgetChange}
             required
+            placeholder="Apple"
           />
         </div>
         <div>
           <label htmlFor="model">Модель:</label>
-          <input
+          <Input
             id="model"
             name="model"
             type="text"
             value={gadgetData.model}
             onChange={handleGadgetChange}
             required
+            placeholder="model 1"
           />
         </div>
         <div>
           <label htmlFor="sn">Серийный номер:</label>
-          <input
+          <Input
             id="sn"
             name="sn"
             type="text"
             value={gadgetData.sn}
             onChange={handleGadgetChange}
             required
+            placeholder="IMEI (S/N)"
           />
         </div>
         <div>
-          <label htmlFor="image">Photo:</label>
-          <input
+          <label htmlFor="image">Фото:</label>
+          <Input
             id="image"
             name="image"
             type="text"
             value={gadgetData.image}
             onChange={handleGadgetChange}
+            placeholder="фото"
           />
         </div>
-        <button type="submit">Отправить</button>
-      </form>
+        <SubmitBtn type="submit">Отправить</SubmitBtn>
+      </Form>
     </div>
   );
 };

@@ -1,14 +1,15 @@
-import { Link } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
+import { HeaderBox, HeaderLink } from "./Header.styled";
 
 export const Header = () => {
+  // const location = useLocation();
+  // const currentPath = location.pathname;
   return (
-    <header>
-      <Link style={{ marginRight: "20px" }} to="/">
-        Main
-      </Link>
-      <Link style={{ marginRight: "20px" }} to="/workers">
-        Private
-      </Link>
-    </header>
+    <HeaderBox>
+      <HeaderLink style={{ marginRight: "20px" }} to="/main">
+        Главная
+      </HeaderLink>
+      <HeaderLink to="/workers">Админ</HeaderLink>
+    </HeaderBox>
   );
 };

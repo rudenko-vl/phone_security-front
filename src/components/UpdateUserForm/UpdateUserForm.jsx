@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { updateUser } from "../../services/api";
+import { Form, Input, SubmitBtn } from "../NewWorkerForm/NewWorkerForm.styled";
 
 export const UpdateUserForm = ({ workerId }) => {
   const [formData, setFormData] = useState({
@@ -24,32 +25,32 @@ export const UpdateUserForm = ({ workerId }) => {
   };
 
   return (
-    <form style={{ marginTop: "30px" }}>
-      <input
-        placeholder="name"
+    <Form style={{ marginTop: "30px" }}>
+      <Input
+        placeholder="Имя"
         name="name"
         type="text"
         onChange={handleInputChange}
         value={formData?.name}
       />
-      <input
-        placeholder="position"
+      <Input
+        placeholder="кладовщик"
         name="position"
         type="text"
         onChange={handleInputChange}
         value={formData?.position}
       />
-      <input
-        placeholder="link"
+      <Input
+        placeholder="фото"
         name="image"
         type="text"
         onChange={handleInputChange}
         value={formData?.image}
       />
-      <button onClick={handlerSubmit} type="button">
-        Update
-      </button>
-    </form>
+      <SubmitBtn onClick={handlerSubmit} type="button">
+        Обновить
+      </SubmitBtn>
+    </Form>
   );
 };
 

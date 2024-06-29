@@ -5,11 +5,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import PrivatePage from "./pages/PrivatePage";
 import PersonPage from "./pages/PersonPage";
+import PrevievPage from "./pages/PrevievPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/main",
     element: <MainPage />,
+  },
+  {
+    path: "/",
+    element: <PrevievPage />,
   },
   {
     path: "/workers",

@@ -14,12 +14,10 @@ export const WorkersList = () => {
         <thead>
           <tr>
             <th>№</th>
-            <th>id</th>
             <th>Имя</th>
             <th>Должность</th>
-            <th>Photo</th>
-            <th>Ссылка</th>
-            <th>Delete</th>
+            <th>Добавить гаджет</th>
+            <th>Удалить</th>
           </tr>
         </thead>
         <tbody>
@@ -43,7 +41,6 @@ export const WorkersList = () => {
                 index={index}
                 name={person.name}
                 position={person.position}
-                image={person.image}
               />
             ))}
         </tbody>

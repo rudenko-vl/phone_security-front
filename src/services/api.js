@@ -2,6 +2,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 // axios.defaults.baseURL = "http://localhost:3000/";
+// axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.baseURL = "https://phone-security-back.vercel.app/";
 
 export const deleteWorker = async (id) => {

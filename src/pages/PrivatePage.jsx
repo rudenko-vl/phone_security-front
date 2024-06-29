@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
 import { Header, WorkersList, NewWorkerForm } from "../components";
+import { Button } from "@mui/material";
+import {
+  Form,
+  Input,
+  SubmitBtn,
+} from "../components/NewWorkerForm/NewWorkerForm.styled";
+import { Wrapper } from "./pagesStyle";
 
 const Private = () => {
   const [password, setPassword] = useState("");
@@ -10,6 +17,7 @@ const Private = () => {
   }, []);
 
   const correctPassword = "123";
+  // const correctPassword = process.env.REACT_APP_PAGE_PASSWORD;
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -28,33 +36,41 @@ const Private = () => {
 
   const logOut = () => {
     setIsAuthenticated(false);
+    setPassword("");
     localStorage.removeItem("auth");
   };
 
   return (
-    <div className="App">
+    <div>
       {isAuthenticated ? (
-        <div>
+        <>
           <Header />
-          <button style={{ marginTop: "30px" }} onClick={logOut}>
-            Log out
-          </button>
-          <NewWorkerForm />
-          <WorkersList />
-        </div>
+          <Wrapper>
+            <Button
+              variant="contained"
+              color="error"
+              sx={{ margin: "0 auto", width: "30%" }}
+              onClick={logOut}
+            >
+              Заблокировать страницу
+            </Button>
+            <NewWorkerForm />
+            <WorkersList />
+          </Wrapper>
+        </>
       ) : (
         <>
           <Header />
-          <form onSubmit={handleSubmit}>
-            <h1>Введите пароль для доступа к содержимому</h1>
-            <input
+          <Form style={{ marginTop: "50px" }} onSubmit={handleSubmit}>
+            <h2>Введите пароль для доступа к содержимому</h2>
+            <Input
               type="password"
               value={password}
               onChange={handlePasswordChange}
               placeholder="Введите пароль"
             />
-            <button type="submit">Войти</button>
-          </form>
+            <SubmitBtn type="submit">Войти</SubmitBtn>
+          </Form>
         </>
       )}
     </div>

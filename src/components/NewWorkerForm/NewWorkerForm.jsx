@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createWorker } from "../../services/api.js";
 import { Toaster } from "react-hot-toast";
+import { Form, Input, SubmitBtn } from "./NewWorkerForm.styled.jsx";
 
 export const NewWorkerForm = () => {
   const [formData, setFormData] = useState({
@@ -26,12 +27,11 @@ export const NewWorkerForm = () => {
 
   return (
     <div>
-      <h1>Управление пользователями и гаджетами</h1>
-      <form onSubmit={handleSubmitUser}>
-        <h2>Добавить пользователя</h2>
+      <Form onSubmit={handleSubmitUser}>
+        <h2>Добавить сотрудника</h2>
         <div>
           <label htmlFor="name">Имя:</label>
-          <input
+          <Input
             id="name"
             name="name"
             type="text"
@@ -41,8 +41,8 @@ export const NewWorkerForm = () => {
           />
         </div>
         <div>
-          <label htmlFor="position">Position:</label>
-          <input
+          <label htmlFor="position">Должность:</label>
+          <Input
             id="position"
             name="position"
             type="text"
@@ -52,8 +52,8 @@ export const NewWorkerForm = () => {
           />
         </div>
         <div>
-          <label htmlFor="image">Photo:</label>
-          <input
+          <label htmlFor="image">Фото:</label>
+          <Input
             id="image"
             name="image"
             type="text"
@@ -61,8 +61,8 @@ export const NewWorkerForm = () => {
             onChange={handleUserChange}
           />
         </div>
-        <button type="submit">Отправить</button>
-      </form>
+        <SubmitBtn type="submit">Создать</SubmitBtn>
+      </Form>
       <Toaster />
     </div>
   );
