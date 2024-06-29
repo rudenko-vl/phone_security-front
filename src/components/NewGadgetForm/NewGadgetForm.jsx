@@ -102,7 +102,7 @@ export const NewGadgetForm = ({ workerId }) => {
             placeholder="фото"
           />
         </div>
-        <SubmitBtn type="submit">Отправить</SubmitBtn>
+        <SubmitBtn type="submit">Создать</SubmitBtn>
       </Form>
     </div>
   );

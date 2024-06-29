@@ -6,7 +6,7 @@ import {
   Input,
   SubmitBtn,
 } from "../components/NewWorkerForm/NewWorkerForm.styled";
-import { Wrapper } from "./pagesStyle";
+import { Wrapper } from "../components/Person/Person.styled";
 
 const Private = () => {
   const [password, setPassword] = useState("");
@@ -16,8 +16,8 @@ const Private = () => {
     setIsAuthenticated(localStorage.getItem("auth") || false);
   }, []);
 
-  const correctPassword = "123";
-  // const correctPassword = process.env.REACT_APP_PAGE_PASSWORD;
+  // const correctPassword = "123";
+  const correctPassword = process.env.REACT_APP_PAGE_PASSWORD;
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);

@@ -2,12 +2,28 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 // axios.defaults.baseURL = "http://localhost:3000/";
-// axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-axios.defaults.baseURL = "https://phone-security-back.vercel.app/";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+// axios.defaults.baseURL = "https://phone-security-back.vercel.app/";
 
 export const deleteWorker = async (id) => {
-  const { data } = await axios.delete(`/users/${id}`);
-  console.log(data);
+  const myPromise = await axios.delete(`/users/${id}`);
+  toast.promise(
+    myPromise,
+    {
+      loading: "Удаление...",
+      success: "Успешно удалено!",
+      error: "Ошибка",
+    },
+    {
+      style: {
+        minWidth: "250px",
+      },
+      success: {
+        duration: 2000,
+        icon: "✅",
+      },
+    }
+  );
 };
 
 export const getAll = async (func) => {
@@ -96,10 +112,7 @@ export const createWorker = (worker) => {
 
 export const updateUser = async (editUserId, editUserData) => {
   try {
-    const response = await axios.put(
-      `/users/${editUserId}`,
-      editUserData
-    );
+    const response = await axios.put(`/users/${editUserId}`, editUserData);
     console.log(response.data);
     alert("Данные пользователя обновлены успешно");
   } catch (error) {

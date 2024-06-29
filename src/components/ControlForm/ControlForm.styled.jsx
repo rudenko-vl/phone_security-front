@@ -88,7 +88,7 @@ export const UserDescription = styled.div`
   gap: 10px;
   > h3 {
     color: #2700ff;
-    font-size: 20px;
+    font-size: 25px;
   }
   > p {
     color: #5a0303;

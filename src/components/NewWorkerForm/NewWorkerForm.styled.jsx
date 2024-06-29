@@ -9,11 +9,17 @@ export const Form = styled.form`
   background-color: #f9f9f9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: 30px auto;
-  > h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
 `;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+`;
+
 export const Input = styled.input`
   width: 100%;
   padding: 10px;

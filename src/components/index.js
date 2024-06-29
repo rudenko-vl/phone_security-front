@@ -6,3 +6,5 @@ export * from "./WorkerItem/WorkerItem.jsx";
 export * from "./ControlForm/ControlForm.jsx";
 export * from "./UpdateUserForm/UpdateUserForm.jsx";
 export * from "./Modal/Modal.jsx";
+export * from "./Loader/Loader.jsx";
+export * from "./Person/Person.jsx";
