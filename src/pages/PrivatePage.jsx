@@ -16,8 +16,8 @@ const Private = () => {
     setIsAuthenticated(localStorage.getItem("auth") || false);
   }, []);
 
-  // const correctPassword = "123";
-  const correctPassword = process.env.REACT_APP_PAGE_PASSWORD;
+  const correctPassword = "123";
+  // const correctPassword = process.env.REACT_APP_PAGE_PASSWORD;
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
