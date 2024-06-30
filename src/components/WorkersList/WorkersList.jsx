@@ -1,27 +1,51 @@
-import { useState, useEffect } from "react";
-import { getAll, deleteWorker } from "../../services/api";
-import { WorkerItem, Loader } from "../../components";
+import { useRef } from "react";
+import { getAll, deleteUser } from "../../services/api";
+import { WorkerItem, Loader, Tooltip } from "../../components";
+import { ExcelBtn, ButtonWrapper } from "./WorkersList.styled";
+import { useQuery } from "@tanstack/react-query";
+import { Button } from "@mui/material";
+import { utils, writeFileXLSX } from "xlsx";
+import { nanoid } from "nanoid";
+import { SiMicrosoftexcel } from "react-icons/si";
 import { Toaster } from "react-hot-toast";
 
 export const WorkersList = () => {
-  const [workers, setWorkers] = useState(null);
-  useEffect(() => {
-    getAll(setWorkers);
-  }, []);
+  const { data: workers, refetch } = useQuery({
+    queryKey: ["users"],
+    queryFn: getAll,
+  });
+
+  const tbl = useRef(null);
 
   return (
     <div>
       <Toaster />
+      <ButtonWrapper>
+        <Button variant="outlined" onClick={() => refetch()}>
+          Обновить
+        </Button>
+        <Tooltip text="Импорт в Excel">
+          <ExcelBtn
+            onClick={() => {
+              const fileName = nanoid(7);
+              const wb = utils.table_to_book(tbl.current);
+              writeFileXLSX(wb, `${fileName}.xlsx`);
+            }}
+          >
+            <SiMicrosoftexcel />
+          </ExcelBtn>
+        </Tooltip>
+      </ButtonWrapper>
       {!workers ? (
         <Loader size={80} />
       ) : (
-        <table>
+        <table ref={tbl}>
           <thead>
             <tr>
               <th>№</th>
               <th>Имя</th>
               <th>Должность</th>
-              <th>Добавить гаджет</th>
+              <th>Ссылка</th>
               <th>Удалить</th>
             </tr>
           </thead>
@@ -46,7 +70,7 @@ export const WorkersList = () => {
                   index={index}
                   name={person.name}
                   position={person.position}
-                  handleDelete={deleteWorker}
+                  deleteUser={deleteUser}
                 />
               ))}
           </tbody>

@@ -7,3 +7,4 @@ export const DeleteBtn = styled.p`
     color: red;
   }
 `;
+

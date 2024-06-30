@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { createGadget } from "../../services/api";
+// import { useMutation } from "@tanstack/react-query";
 import { Form, Input, SubmitBtn } from "../NewWorkerForm/NewWorkerForm.styled";
 
 export const NewGadgetForm = ({ workerId }) => {
@@ -24,6 +25,10 @@ export const NewGadgetForm = ({ workerId }) => {
     }));
   };
 
+  // const { mutate: create } = useMutation({
+  //   mutationFn: createGadget,
+  // });
+
   const handleSubmitGadget = (e) => {
     e.preventDefault();
     const gadget = {
@@ -35,6 +40,7 @@ export const NewGadgetForm = ({ workerId }) => {
     };
 
     createGadget(workerId, gadget);
+    // create(workerId, gadget);
     reset();
   };
 
@@ -44,7 +50,7 @@ export const NewGadgetForm = ({ workerId }) => {
         <h2>Добавить гаджет</h2>
         <div></div>
         <div>
-          <label htmlFor="title">Название:</label>
+          <label htmlFor="title">Название*:</label>
           <Input
             id="title"
             name="title"
@@ -56,7 +62,7 @@ export const NewGadgetForm = ({ workerId }) => {
           />
         </div>
         <div>
-          <label htmlFor="brand">Бренд:</label>
+          <label htmlFor="brand">Бренд*:</label>
           <Input
             id="brand"
             name="brand"
@@ -68,7 +74,7 @@ export const NewGadgetForm = ({ workerId }) => {
           />
         </div>
         <div>
-          <label htmlFor="model">Модель:</label>
+          <label htmlFor="model">Модель*:</label>
           <Input
             id="model"
             name="model"
@@ -80,7 +86,7 @@ export const NewGadgetForm = ({ workerId }) => {
           />
         </div>
         <div>
-          <label htmlFor="sn">Серийный номер:</label>
+          <label htmlFor="sn">Серийный номер*:</label>
           <Input
             id="sn"
             name="sn"

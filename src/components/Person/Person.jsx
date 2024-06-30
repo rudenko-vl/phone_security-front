@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { NewGadgetForm, UpdateUserForm, Loader } from "../../components";
 import { Button } from "@mui/material";
 import { Toaster } from "react-hot-toast";
-import { deleteGadget, getOne } from "../../services/api";
+import { deleteGadget, getAll } from "../../services/api";
 import { Block, Wrapper, UserDescr, GadgetsWrapper } from "./Person.styled";
 import {
   GadgetList,
@@ -11,17 +11,16 @@ import {
   GadgetDescription,
   GadgetDescrItem,
 } from "../ControlForm/ControlForm.styled";
+import { useQuery } from "@tanstack/react-query";
 
 export const Person = ({ workerId }) => {
-  const [person, setPerson] = useState(null);
   const [isUpdForm, setIsUpdForm] = useState(false);
+  const { data: persons, refetch } = useQuery({
+    queryKey: ["users"],
+    queryFn: getAll,
+  });
 
-  useEffect(() => {
-    const worker = getOne(workerId, setPerson);
-    if (worker) {
-      setPerson(worker);
-    }
-  }, [workerId]);
+  const person = persons?.find((person) => person?._id === workerId);
 
   return (
     <Wrapper>
@@ -39,7 +38,6 @@ export const Person = ({ workerId }) => {
             <p>Должность: {person.position}</p>
             <Button
               sx={{ marginTop: "20px" }}
-              // disabled={true}
               onClick={() => setIsUpdForm(!isUpdForm)}
               variant="contained"
             >
@@ -57,8 +55,15 @@ export const Person = ({ workerId }) => {
       </Block>
       <GadgetsWrapper>
         <h2>Список гаджетов {person?.name}</h2>
+        <Button
+          sx={{ width: "200px", margin: "20px auto" }}
+          variant="contained"
+          onClick={() => refetch()}
+        >
+          Обновить
+        </Button>
         <GadgetList>
-          {person?.gadgets &&
+          {person?.gadgets.length > 0 ? (
             person.gadgets.map((item, index) => {
               return (
                 <GadgetItem key={item._id}>
@@ -96,7 +101,10 @@ export const Person = ({ workerId }) => {
                   </Button>
                 </GadgetItem>
               );
-            })}
+            })
+          ) : (
+            <h3>Пока ничего нет</h3>
+          )}
         </GadgetList>
       </GadgetsWrapper>
     </Wrapper>

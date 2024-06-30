@@ -22,10 +22,17 @@ export const UpdateUserForm = ({ workerId }) => {
       image: formData?.image,
     };
     updateUser(workerId, updatedUser);
+    setFormData({
+      name: "",
+      position: "",
+      image: "",
+    });
   };
 
   return (
     <Form style={{ marginTop: "30px" }}>
+      <h2>Изменить данные</h2>
+      <label htmlFor="name">Имя:</label>
       <Input
         placeholder="Имя"
         name="name"
@@ -33,6 +40,7 @@ export const UpdateUserForm = ({ workerId }) => {
         onChange={handleInputChange}
         value={formData?.name}
       />
+      <label htmlFor="position">Должность:</label>
       <Input
         placeholder="кладовщик"
         name="position"
@@ -40,6 +48,7 @@ export const UpdateUserForm = ({ workerId }) => {
         onChange={handleInputChange}
         value={formData?.position}
       />
+      <label htmlFor="image">Фото:</label>
       <Input
         placeholder="фото"
         name="image"

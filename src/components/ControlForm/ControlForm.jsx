@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { fetchWorkers } from "../../services/api";
+import { getAll } from "../../services/api";
 import {
   GadgetList,
   Container,
@@ -13,25 +13,31 @@ import {
   GadgetDescription,
   GadgetDescrItem,
 } from "./ControlForm.styled";
+import { Loader } from "../../components";
+import { useQuery } from "@tanstack/react-query";
 
 export const ControlForm = () => {
   const [searchValue, setSearchValue] = useState("");
   const [foundUser, setFoundUser] = useState(null);
-  const [workers, setWorkers] = useState([]);
   const [isOk, setIsOk] = useState(null);
 
-  const searchInputRef = useRef();
+  let searchInputRef = useRef();
 
   useEffect(() => {
-    fetchWorkers(setWorkers);
+    // searchInputRef?.current?.focus();
     setTimeout(() => {
       if (searchInputRef) {
-        searchInputRef.current.focus();
+        searchInputRef?.current?.focus();
       }
-    }, 1000);
+    }, 500);
   }, []);
 
   let interval;
+
+  const { data: workers, isLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: getAll,
+  });
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -63,6 +69,8 @@ export const ControlForm = () => {
     setIsOk("ok");
     searchInputRef.current.focus();
   };
+
+  if (isLoading) return <Loader size={100} />;
 
   return (
     <Container>

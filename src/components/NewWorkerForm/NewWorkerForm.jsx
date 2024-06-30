@@ -26,6 +26,11 @@ export const NewWorkerForm = () => {
       image: formData.image,
     };
     createWorker(newPerson);
+    setFormData({
+      name: "",
+      position: "",
+      image: "",
+    });
   };
 
   return (

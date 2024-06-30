@@ -1,7 +1,5 @@
 body {
   margin: 0;
-  /* background-color: #030357; */
-  /* color: white; */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -45,7 +43,7 @@ ul {
   list-style: none;
 }
 
-.link {
+a {
   text-decoration: none;
 }
 

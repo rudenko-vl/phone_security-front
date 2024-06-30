@@ -49,7 +49,7 @@ const Private = () => {
             <Button
               variant="contained"
               color="error"
-              sx={{ margin: "0 auto", width: "30%" }}
+              sx={{ margin: "0 auto", width: "250px" }}
               onClick={logOut}
             >
               Заблокировать страницу
