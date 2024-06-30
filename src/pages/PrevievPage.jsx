@@ -5,9 +5,9 @@ const PrevievPage = () => {
   return (
     <PrevDiv>
       <h1>Phone security</h1>
-      <Button variant="contained" color="error" sx={{ padding: "10px" }}>
+      <Button variant="contained" color="success" sx={{ padding: "10px" }}>
         <Link
-          style={{ color: "white", fontSize: "25px", fontWeight: "700" }}
+          style={{ color: "white", fontSize: "35px", fontWeight: "700" }}
           to="/main"
         >
           Start

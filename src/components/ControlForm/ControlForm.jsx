@@ -12,19 +12,25 @@ import {
   UserDescription,
   GadgetDescription,
   GadgetDescrItem,
+  DefaultText,
+  IntervalBtns,
 } from "./ControlForm.styled";
-import { Loader } from "../../components";
+import { Loader, Modal, Tooltip } from "../../components";
 import { useQuery } from "@tanstack/react-query";
+import { Button } from "@mui/material";
 
 export const ControlForm = () => {
   const [searchValue, setSearchValue] = useState("");
   const [foundUser, setFoundUser] = useState(null);
   const [isOk, setIsOk] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   let searchInputRef = useRef();
 
   useEffect(() => {
-    // searchInputRef?.current?.focus();
     setTimeout(() => {
       if (searchInputRef) {
         searchInputRef?.current?.focus();
@@ -32,7 +38,7 @@ export const ControlForm = () => {
     }, 500);
   }, []);
 
-  let interval;
+  let interval = localStorage.getItem("interval") || 5000;
 
   const { data: workers, isLoading } = useQuery({
     queryKey: ["users"],
@@ -60,7 +66,7 @@ export const ControlForm = () => {
     }
     setTimeout(() => {
       resetForm();
-    }, interval || 3000);
+    }, interval);
   };
 
   const resetForm = () => {
@@ -88,6 +94,11 @@ export const ControlForm = () => {
           <Btn type="button" onClick={resetForm}>
             Удалить
           </Btn>
+          <Tooltip text="Время показа результата поиска">
+            <Btn type="button" onClick={handleOpenModal}>
+              Интервал
+            </Btn>
+          </Tooltip>
         </Wrapper>
       </form>
       {isOk === "error" && (
@@ -100,7 +111,7 @@ export const ControlForm = () => {
       {foundUser && (
         <div
           style={{
-            backgroundColor: "#4cff4c",
+            backgroundColor: "#232ca6",
             padding: "10px",
           }}
         >
@@ -150,6 +161,46 @@ export const ControlForm = () => {
           </GadgetList>
         </div>
       )}
+      {!searchValue && (
+        <DefaultText>Просканируйте IMEI устройства!</DefaultText>
+      )}
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <IntervalBtns>
+          <h2>Выберите длительность отображения</h2>
+          <Button
+            onClick={() => {
+              localStorage.setItem("interval", 3000);
+            }}
+            variant="contained"
+          >
+            3 секунды
+          </Button>
+          <Button
+            onClick={() => {
+              localStorage.setItem("interval", 5000);
+            }}
+            variant="contained"
+          >
+            5 секунд
+          </Button>
+          <Button
+            onClick={() => {
+              localStorage.setItem("interval", 10000);
+            }}
+            variant="contained"
+          >
+            10 секунд
+          </Button>
+          <Button
+            onClick={() => {
+              localStorage.setItem("interval", 5000000);
+            }}
+            variant="contained"
+          >
+            Управлять вручную
+          </Button>
+        </IntervalBtns>
+      </Modal>
     </Container>
   );
 };

@@ -69,6 +69,10 @@ export const Person = ({ workerId }) => {
                 <GadgetItem key={item._id}>
                   <h3>Гаджет {index + 1}:</h3>
                   <GadgetDescription>
+                  <GadgetDescrItem>
+                      Тип:
+                      <p>{item.title}</p>
+                    </GadgetDescrItem>
                     <GadgetDescrItem>
                       Бренд:
                       <p>{item.brand}</p>

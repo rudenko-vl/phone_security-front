@@ -5,32 +5,6 @@ import { toast } from "react-hot-toast";
 // axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.baseURL = "https://phone-security-back.vercel.app/";
 
-// export const deleteWorker = async (id) => {
-//   const myPromise = await axios.delete(`/users/${id}`);
-//   toast.promise(
-//     myPromise,
-//     {
-//       loading: "Удаление...",
-//       success: "Успешно удалено!",
-//       error: "Ошибка",
-//     },
-//     {
-//       style: {
-//         minWidth: "250px",
-//       },
-//       success: {
-//         duration: 2000,
-//         icon: "✅",
-//       },
-//     }
-//   );
-// };
-
-// export const getAll = async (func) => {
-//   const { data } = await axios.get("/users");
-//   func(data);
-// };
-
 export const deleteUser = async (id) => {
   try {
     const myPromise = await axios.delete(`/users/${id}`);
@@ -87,20 +61,6 @@ export const getOne = async (id) => {
   const { data } = await axios.get(`/users/${id}`);
   return data;
 };
-
-// export const getOne = async (id, func) => {
-//   const { data } = await axios.get(`/users/${id}`);
-//   func(data);
-// };
-
-// export const fetchWorkers = async (func) => {
-//   try {
-//     const response = await axios.get("/users");
-//     func(response.data);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
 
 export const createGadget = (workerId, gadget) => {
   const myPromise = axios.post(`/users/${workerId}/gadgets`, gadget);

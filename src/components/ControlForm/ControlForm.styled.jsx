@@ -101,6 +101,13 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
+export const DefaultText = styled.h1`
+  text-align: center;
+  color: blue;
+  font-size: 36px;
+  margin-top: 50px;
+`;
+
 export const SearchInput = styled.input`
   width: 300px;
   height: 30px;
@@ -131,5 +138,17 @@ export const Btn = styled.button`
   :hover,
   :focus {
     background-color: #303f9f;
+  }
+`;
+
+export const IntervalBtns = styled.div`
+  width: 400px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  > h2 {
+    text-align: center;
+    margin-bottom: 15px;
   }
 `;

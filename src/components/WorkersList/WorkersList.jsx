@@ -21,7 +21,7 @@ export const WorkersList = () => {
     <div>
       <Toaster />
       <ButtonWrapper>
-        <Button variant="outlined" onClick={() => refetch()}>
+        <Button variant="contained" onClick={() => refetch()}>
           Обновить
         </Button>
         <Tooltip text="Импорт в Excel">

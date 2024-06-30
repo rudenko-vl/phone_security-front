@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import { createGadget } from "../../services/api";
 // import { useMutation } from "@tanstack/react-query";
 import { Form, Input, SubmitBtn } from "../NewWorkerForm/NewWorkerForm.styled";
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 export const NewGadgetForm = ({ workerId }) => {
   const [gadgetData, setGadgetData] = useState({
-    title: "",
+    title: "Смартфон",
     brand: "",
     model: "",
     sn: "",
@@ -14,7 +15,13 @@ export const NewGadgetForm = ({ workerId }) => {
   });
 
   const reset = () => {
-    setGadgetData({ title: "", brand: "", model: "", sn: "", image: "" });
+    setGadgetData({
+      title: "Смартфон",
+      brand: "",
+      model: "",
+      sn: "",
+      image: "",
+    });
   };
 
   const handleGadgetChange = (e) => {
@@ -48,19 +55,23 @@ export const NewGadgetForm = ({ workerId }) => {
     <div>
       <Form onSubmit={handleSubmitGadget}>
         <h2>Добавить гаджет</h2>
-        <div></div>
-        <div>
-          <label htmlFor="title">Название*:</label>
-          <Input
-            id="title"
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Тип устройства</InputLabel>
+          <Select
+            sx={{ height: "40px" }}
             name="title"
-            type="text"
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
             value={gadgetData.title}
+            label="Тип устройства"
             onChange={handleGadgetChange}
-            required
-            placeholder="Телефон/Смарт часы"
-          />
-        </div>
+          >
+            <MenuItem value={"Смартфон"}>Смартфон</MenuItem>
+            <MenuItem value={"Смарт-часы/Фитнес-браслет"}>
+              Смарт-часы/Фитнес-браслет
+            </MenuItem>
+          </Select>
+        </FormControl>
         <div>
           <label htmlFor="brand">Бренд*:</label>
           <Input

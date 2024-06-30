@@ -9,6 +9,9 @@ export const Form = styled.form`
   background-color: #f9f9f9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: 30px auto;
+  > h2 {
+    margin-bottom: 15px;
+  }
 `;
 
 export const Container = styled.div`
