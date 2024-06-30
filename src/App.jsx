@@ -6,22 +6,17 @@ import MainPage from "./pages/MainPage";
 import PrivatePage from "./pages/PrivatePage";
 import PersonPage from "./pages/PersonPage";
 import PrevievPage from "./pages/PrevievPage";
-import ErrorPage from "./pages/ErrorPage";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
-    path: "/t",
-    element: <ErrorPage />,
+    path: "/",
+    element: <PrevievPage />,
   },
   {
     path: "/main",
     element: <MainPage />,
-  },
-  {
-    path: "/",
-    element: <PrevievPage />,
   },
   {
     path: "/workers",
