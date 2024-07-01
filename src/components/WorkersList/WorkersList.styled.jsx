@@ -19,7 +19,9 @@ export const ExcelBtn = styled.button`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  gap: 20px;
+  justify-content: flex-start;
+  gap: 30px;
+  width: 100%;
   align-items: center;
-  margin-bottom: 30px;
+  margin: 0px auto 30px auto;
 `;

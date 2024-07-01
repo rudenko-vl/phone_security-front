@@ -12,32 +12,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-html {
+
+* {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0;
-  margin-bottom: 0;
-  color: black;
-}
-p {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-svg {
-  color: black;
-}
 ul,
 ol {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-left: 0;
+  margin: 0;
+  padding: 0;
 }
 
 ul {

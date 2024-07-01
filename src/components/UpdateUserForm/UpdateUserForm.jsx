@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { updateUser } from "../../services/api";
 import { Form, Input, SubmitBtn } from "../NewWorkerForm/NewWorkerForm.styled";
 
-export const UpdateUserForm = ({ workerId }) => {
+export const UpdateUserForm = ({ workerId, person }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    position: "",
-    image: "",
+    name: person?.name,
+    position: person?.position,
+    image: person?.image,
   });
 
   const handleInputChange = (e) => {
@@ -65,4 +65,5 @@ export const UpdateUserForm = ({ workerId }) => {
 
 UpdateUserForm.propTypes = {
   workerId: PropTypes.string,
+  person: PropTypes.object,
 };

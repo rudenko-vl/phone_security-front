@@ -12,21 +12,14 @@ import {
   UserDescription,
   GadgetDescription,
   GadgetDescrItem,
-  DefaultText,
-  IntervalBtns,
 } from "./ControlForm.styled";
-import { Loader, Modal, Tooltip } from "../../components";
+import { Loader } from "../../components";
 import { useQuery } from "@tanstack/react-query";
-import { Button } from "@mui/material";
 
 export const ControlForm = () => {
   const [searchValue, setSearchValue] = useState("");
   const [foundUser, setFoundUser] = useState(null);
   const [isOk, setIsOk] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
 
   let searchInputRef = useRef();
 
@@ -38,14 +31,18 @@ export const ControlForm = () => {
     }, 500);
   }, []);
 
-  let interval = localStorage.getItem("interval") || 5000;
-
   const { data: workers, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: getAll,
   });
 
+  const resetForm = () => {
+    setSearchValue("");
+    searchInputRef.current.focus();
+  };
+
   const handleInputChange = (event) => {
+    setFoundUser(null);
     const value = event.target.value;
     setSearchValue(value);
 
@@ -64,18 +61,8 @@ export const ControlForm = () => {
     } else {
       setIsOk("error");
     }
-    setTimeout(() => {
-      resetForm();
-    }, interval);
+    resetForm();
   };
-
-  const resetForm = () => {
-    setFoundUser(null);
-    setSearchValue("");
-    setIsOk("ok");
-    searchInputRef.current.focus();
-  };
-
   if (isLoading) return <Loader size={100} />;
 
   return (
@@ -88,17 +75,19 @@ export const ControlForm = () => {
               type="text"
               value={searchValue}
               onChange={handleInputChange}
-              placeholder="Поиск"
+              placeholder="Просканируйте IMEI устройства"
             />
           </label>
-          <Btn type="button" onClick={resetForm}>
+          <Btn
+            type="button"
+            onClick={() => {
+              setFoundUser(null);
+              setIsOk("ok");
+              searchInputRef.current.focus();
+            }}
+          >
             Удалить
           </Btn>
-          <Tooltip text="Время показа результата поиска">
-            <Btn type="button" onClick={handleOpenModal}>
-              Интервал
-            </Btn>
-          </Tooltip>
         </Wrapper>
       </form>
       {isOk === "error" && (
@@ -152,8 +141,8 @@ export const ControlForm = () => {
                     <img
                       src={item.image ? item.image : "/gadget.png"}
                       alt="img"
-                      width={200}
-                      height={200}
+                      width={300}
+                      height={450}
                     />
                   </GadgetItem>
                 );
@@ -161,46 +150,6 @@ export const ControlForm = () => {
           </GadgetList>
         </div>
       )}
-      {!searchValue && (
-        <DefaultText>Просканируйте IMEI устройства!</DefaultText>
-      )}
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <IntervalBtns>
-          <h2>Выберите длительность отображения</h2>
-          <Button
-            onClick={() => {
-              localStorage.setItem("interval", 3000);
-            }}
-            variant="contained"
-          >
-            3 секунды
-          </Button>
-          <Button
-            onClick={() => {
-              localStorage.setItem("interval", 5000);
-            }}
-            variant="contained"
-          >
-            5 секунд
-          </Button>
-          <Button
-            onClick={() => {
-              localStorage.setItem("interval", 10000);
-            }}
-            variant="contained"
-          >
-            10 секунд
-          </Button>
-          <Button
-            onClick={() => {
-              localStorage.setItem("interval", 5000000);
-            }}
-            variant="contained"
-          >
-            Управлять вручную
-          </Button>
-        </IntervalBtns>
-      </Modal>
     </Container>
   );
 };

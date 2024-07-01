@@ -1,6 +1,6 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { getAll, deleteUser } from "../../services/api";
-import { WorkerItem, Loader, Tooltip } from "../../components";
+import { WorkerItem, Loader, Tooltip, Filter } from "../../components";
 import { ExcelBtn, ButtonWrapper } from "./WorkersList.styled";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@mui/material";
@@ -16,6 +16,22 @@ export const WorkersList = () => {
   });
 
   const tbl = useRef(null);
+  const [value, setValue] = useState("");
+  const changeFilter = (e) => {
+    setValue(e.target.value);
+  };
+  const clearFilter = () => {
+    setValue("");
+  };
+
+  const filteredPersons =
+    workers?.length > 0
+      ? workers.filter((item) =>
+          (item.position + item.name)
+            .toLowerCase()
+            .includes(value.trim().toLowerCase())
+        )
+      : [];
 
   return (
     <div>
@@ -35,6 +51,12 @@ export const WorkersList = () => {
             <SiMicrosoftexcel />
           </ExcelBtn>
         </Tooltip>
+        <h2>Кол-во сотрудников: {filteredPersons?.length}</h2>
+        <Filter
+          value={value}
+          clearFilter={clearFilter}
+          changeFilter={changeFilter}
+        />
       </ButtonWrapper>
       {!workers ? (
         <Loader size={80} />
@@ -50,7 +72,7 @@ export const WorkersList = () => {
             </tr>
           </thead>
           <tbody>
-            {workers
+            {filteredPersons
               .sort(function (a, b) {
                 const nameA = a.name.toUpperCase();
                 const nameB = b.name.toUpperCase();

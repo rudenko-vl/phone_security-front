@@ -48,7 +48,7 @@ export const Person = ({ workerId }) => {
           <Loader size={80} />
         )}
         {isUpdForm ? (
-          <UpdateUserForm workerId={workerId} />
+          <UpdateUserForm workerId={workerId} person={person} />
         ) : (
           <NewGadgetForm workerId={workerId} />
         )}
@@ -69,7 +69,7 @@ export const Person = ({ workerId }) => {
                 <GadgetItem key={item._id}>
                   <h3>Гаджет {index + 1}:</h3>
                   <GadgetDescription>
-                  <GadgetDescrItem>
+                    <GadgetDescrItem>
                       Тип:
                       <p>{item.title}</p>
                     </GadgetDescrItem>
@@ -89,8 +89,8 @@ export const Person = ({ workerId }) => {
                   <img
                     src={item.image ? item.image : "/gadget.png"}
                     alt="img"
-                    width={200}
-                    height={200}
+                    width={300}
+                    height={500}
                   />
                   <Button
                     sx={{ margin: "20px auto" }}

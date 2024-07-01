@@ -56,7 +56,7 @@ export const Wrapper = styled.div`
 `;
 export const Error = styled.div`
   background-color: #ff2f2f;
-  height: 400px;
+  height: 500px;
   margin: 0 auto;
   padding: 20px;
   > h1 {
@@ -113,6 +113,7 @@ export const SearchInput = styled.input`
   height: 30px;
   border: 2px solid #4c056c;
   border-radius: 6px;
+  padding: 10px;
 `;
 
 export const Btn = styled.button`
