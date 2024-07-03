@@ -2,19 +2,19 @@ import { useState, useEffect, useRef } from "react";
 import { getAll } from "../../services/api";
 import {
   GadgetList,
-  Container,
   Wrapper,
   GadgetItem,
   UserWrapper,
   SearchInput,
-  Btn,
   Error,
   UserDescription,
   GadgetDescription,
   GadgetDescrItem,
+  InfoWrapper,
 } from "./ControlForm.styled";
 import { Loader } from "../../components";
 import { useQuery } from "@tanstack/react-query";
+import { Button } from "@mui/material";
 
 export const ControlForm = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -28,7 +28,7 @@ export const ControlForm = () => {
       if (searchInputRef) {
         searchInputRef?.current?.focus();
       }
-    }, 500);
+    }, 1000);
   }, []);
 
   const { data: workers, isLoading } = useQuery({
@@ -66,7 +66,7 @@ export const ControlForm = () => {
   if (isLoading) return <Loader size={100} />;
 
   return (
-    <Container>
+    <div>
       <form onSubmit={handleSubmit}>
         <Wrapper>
           <label>
@@ -78,16 +78,17 @@ export const ControlForm = () => {
               placeholder="Просканируйте IMEI устройства"
             />
           </label>
-          <Btn
+          <Button
+            variant="contained"
             type="button"
             onClick={() => {
               setFoundUser(null);
               setIsOk("ok");
-              searchInputRef.current.focus();
+              resetForm();
             }}
           >
             Удалить
-          </Btn>
+          </Button>
         </Wrapper>
       </form>
       {isOk === "error" && (
@@ -98,12 +99,7 @@ export const ControlForm = () => {
         </Error>
       )}
       {foundUser && (
-        <div
-          style={{
-            backgroundColor: "#232ca6",
-            padding: "10px",
-          }}
-        >
+        <InfoWrapper>
           <UserWrapper>
             <UserDescription>
               <p>Сотрудник:</p>
@@ -141,15 +137,15 @@ export const ControlForm = () => {
                     <img
                       src={item.image ? item.image : "/gadget.png"}
                       alt="img"
-                      width={300}
-                      height={450}
+                      // width={300}
+                      // height={450}
                     />
                   </GadgetItem>
                 );
               })}
           </GadgetList>
-        </div>
+        </InfoWrapper>
       )}
-    </Container>
+    </div>
   );
 };

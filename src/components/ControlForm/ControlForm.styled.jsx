@@ -8,8 +8,8 @@ export const GadgetList = styled.ul`
   width: 80%;
   gap: 50px;
   flex-wrap: wrap;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 20px 40px;
+  border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
@@ -18,16 +18,26 @@ export const GadgetItem = styled.li`
   flex: 1;
   flex-direction: column;
   align-items: center;
-  border: 2px solid purple;
-  border-radius: 6px;
+  border-radius: 30px;
   padding: 5px;
+  height: 100%;
+  max-width: 400px;
+  box-shadow: 0px 0px 10px 3px #28287f;
   > h3 {
     font-size: 16px;
     color: blue;
   }
   > img {
+    width: 300px;
+    height: 550px;
     cursor: pointer;
   }
+`;
+
+export const InfoWrapper = styled.div`
+  width: 100%;
+  background-color: #232ca6;
+  padding: 20px;
 `;
 
 export const GadgetDescription = styled.ul`
@@ -73,7 +83,7 @@ export const Error = styled.div`
 export const UserWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 600px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 10px;
   border: 2px solid white;
@@ -96,11 +106,6 @@ export const UserDescription = styled.div`
   }
 `;
 
-export const Container = styled.div`
-  max-width: 900px;
-  margin: 0 auto;
-`;
-
 export const DefaultText = styled.h1`
   text-align: center;
   color: blue;
@@ -110,36 +115,11 @@ export const DefaultText = styled.h1`
 
 export const SearchInput = styled.input`
   width: 300px;
-  height: 30px;
+  height: 37px;
   border: 2px solid #4c056c;
   border-radius: 6px;
   padding: 10px;
-`;
-
-export const Btn = styled.button`
-  margin-left: 10px;
-  border-radius: 6px;
-  background-color: #3f51b5;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  text-align: center;
-  display: inline-block;
-  color: #fff;
-  border: 0;
-  text-decoration: none;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 18px;
-  line-height: 24px;
-  font-style: normal;
-  font-weight: 500;
-  min-width: 100px;
-  height: 35px;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  :hover,
-  :focus {
-    background-color: #303f9f;
-  }
+  margin-right: 20px;
 `;
 
 export const IntervalBtns = styled.div`

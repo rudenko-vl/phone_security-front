@@ -4,7 +4,13 @@ import { NewGadgetForm, UpdateUserForm, Loader } from "../../components";
 import { Button } from "@mui/material";
 import { Toaster } from "react-hot-toast";
 import { deleteGadget, getAll } from "../../services/api";
-import { Block, Wrapper, UserDescr, GadgetsWrapper } from "./Person.styled";
+import {
+  Block,
+  Wrapper,
+  UserDescr,
+  GadgetsWrapper,
+  BtnBox,
+} from "./Person.styled";
 import {
   GadgetList,
   GadgetItem,
@@ -36,13 +42,17 @@ export const Person = ({ workerId }) => {
             />
             <p>Имя: {person.name}</p>
             <p>Должность: {person.position}</p>
-            <Button
-              sx={{ marginTop: "20px" }}
-              onClick={() => setIsUpdForm(!isUpdForm)}
-              variant="contained"
-            >
-              {isUpdForm ? "Добавить гаджет" : "Изменить"}
-            </Button>
+            <BtnBox>
+              <Button
+                onClick={() => setIsUpdForm(!isUpdForm)}
+                variant="contained"
+              >
+                {isUpdForm ? "Добавить гаджет" : "Изменить"}
+              </Button>
+              <Button variant="contained" onClick={() => refetch()}>
+                Обновить
+              </Button>
+            </BtnBox>
           </UserDescr>
         ) : (
           <Loader size={80} />
@@ -55,13 +65,6 @@ export const Person = ({ workerId }) => {
       </Block>
       <GadgetsWrapper>
         <h2>Список гаджетов {person?.name}</h2>
-        <Button
-          sx={{ width: "200px", margin: "20px auto" }}
-          variant="contained"
-          onClick={() => refetch()}
-        >
-          Обновить
-        </Button>
         <GadgetList>
           {person?.gadgets.length > 0 ? (
             person.gadgets.map((item, index) => {

@@ -2,14 +2,21 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { DeleteBtn } from "./WorkerItem.styled";
 import { RiDeleteBin6Line } from "react-icons/ri";
-// import { deleteUser } from "../../services/api";
 
-export const WorkerItem = ({ index, name, position, id, deleteUser }) => {
+export const WorkerItem = ({
+  index,
+  name,
+  position,
+  id,
+  deleteUser,
+  gadgetsLength,
+}) => {
   return (
     <tr key={id}>
       <td>{index + 1}</td>
       <td>{name}</td>
       <td>{position}</td>
+      <td>{gadgetsLength}</td>
       <td>{<Link to={`${id}`}>Открыть</Link>}</td>
       <td>
         <DeleteBtn
@@ -30,4 +37,5 @@ WorkerItem.propTypes = {
   id: PropTypes.string,
   index: PropTypes.number,
   deleteUser: PropTypes.func,
+  gadgetsLength: PropTypes.number,
 };
