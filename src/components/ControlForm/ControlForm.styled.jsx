@@ -22,14 +22,15 @@ export const GadgetItem = styled.li`
   padding: 5px;
   height: 100%;
   max-width: 400px;
+  overflow: hidden;
   box-shadow: 0px 0px 10px 3px #28287f;
   > h3 {
     font-size: 16px;
     color: blue;
   }
   > img {
-    width: 300px;
-    height: 550px;
+    width: 100%;
+    height: 500px;
     cursor: pointer;
   }
 `;
