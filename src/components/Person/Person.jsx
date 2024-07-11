@@ -1,6 +1,11 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { NewGadgetForm, UpdateUserForm, Loader } from "../../components";
+import {
+  NewGadgetForm,
+  UpdateUserForm,
+  Loader,
+  UpdateGadgetForm,
+} from "../../components";
 import { Button } from "@mui/material";
 import { Toaster } from "react-hot-toast";
 import { deleteGadget, getAll } from "../../services/api";
@@ -21,6 +26,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const Person = ({ workerId }) => {
   const [isUpdForm, setIsUpdForm] = useState(false);
+  const [isUpdGadgetForm, setIsUpdGadgetForm] = useState(false);
   const { data: persons, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: getAll,
@@ -106,6 +112,21 @@ export const Person = ({ workerId }) => {
                   >
                     Удалить
                   </Button>
+                  <Button
+                    onClick={() => setIsUpdGadgetForm(!isUpdGadgetForm)}
+                    variant="contained"
+                    disabled={true}
+                  >
+                    {!isUpdGadgetForm ? "Изменить гаджет" : "Скрыть форму"}
+                  </Button>
+                  {isUpdGadgetForm && (
+                    <UpdateGadgetForm
+                      userId={workerId}
+                      gadgetId={item._id}
+                      person={person}
+                      index={index}
+                    />
+                  )}
                 </GadgetItem>
               );
             })

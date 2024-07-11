@@ -115,3 +115,17 @@ export const updateUser = async (editUserId, editUserData) => {
     alert("Ошибка при обновлении данных пользователя");
   }
 };
+
+export const updateGadget = async ({ userId, gadgetId, updatedData }) => {
+  try {
+    const response = await axios.put(
+      `/users/${userId}/gadgets/${gadgetId}`,
+      updatedData
+    );
+    console.log(response.data);
+    alert("Данные пользователя обновлены успешно");
+  } catch (error) {
+    console.error("Ошибка при обновлении данных пользователя:", error);
+    alert("Ошибка при обновлении данных пользователя");
+  }
+};

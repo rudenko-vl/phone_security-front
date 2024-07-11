@@ -29,7 +29,7 @@ export const GadgetItem = styled.li`
     color: blue;
   }
   > img {
-    width: 100%;
+    width: 80%;
     height: 500px;
     cursor: pointer;
   }

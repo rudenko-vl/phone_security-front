@@ -10,12 +10,14 @@ export const WorkerItem = ({
   id,
   deleteUser,
   gadgetsLength,
+  image,
 }) => {
   return (
     <tr key={id}>
       <td>{index + 1}</td>
       <td>{name}</td>
       <td>{position}</td>
+      <td>{image}</td>
       <td>{gadgetsLength}</td>
       <td>{<Link to={`${id}`}>Открыть</Link>}</td>
       <td>
@@ -38,4 +40,5 @@ WorkerItem.propTypes = {
   index: PropTypes.number,
   deleteUser: PropTypes.func,
   gadgetsLength: PropTypes.number,
+  image: PropTypes.string,
 };
