@@ -41,7 +41,7 @@ export const Person = ({ workerId }) => {
         {person ? (
           <UserDescr>
             <img
-              src={person.image ? person.image : "/funny_cat.jpg"}
+              src={person.image ? person.image : "/avatar.png"}
               alt="img"
               width={300}
               height={350}

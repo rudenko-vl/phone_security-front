@@ -67,7 +67,7 @@ export const WorkersList = () => {
               <th>№</th>
               <th>Имя</th>
               <th>Должность</th>
-              <th>photo</th>
+              {/* <th>photo</th> */}
               <th>Устройств</th>
               <th>Ссылка</th>
               <th>Удалить</th>
