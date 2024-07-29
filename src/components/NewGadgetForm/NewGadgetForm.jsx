@@ -1,11 +1,10 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { createGadget } from "../../services/api";
-// import { useMutation } from "@tanstack/react-query";
 import { Form, Input, SubmitBtn } from "../NewWorkerForm/NewWorkerForm.styled";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-export const NewGadgetForm = ({ workerId }) => {
+export const NewGadgetForm = ({ workerId, userRefetch }) => {
   const [gadgetData, setGadgetData] = useState({
     title: "Смартфон",
     brand: "",
@@ -32,10 +31,6 @@ export const NewGadgetForm = ({ workerId }) => {
     }));
   };
 
-  // const { mutate: create } = useMutation({
-  //   mutationFn: createGadget,
-  // });
-
   const handleSubmitGadget = (e) => {
     e.preventDefault();
     const gadget = {
@@ -47,8 +42,10 @@ export const NewGadgetForm = ({ workerId }) => {
     };
 
     createGadget(workerId, gadget);
-    // create(workerId, gadget);
     reset();
+    setTimeout(() => {
+      userRefetch();
+    }, 1500);
   };
 
   return (
@@ -127,4 +124,5 @@ export const NewGadgetForm = ({ workerId }) => {
 
 NewGadgetForm.propTypes = {
   workerId: PropTypes.string,
+  userRefetch: PropTypes.func,
 };

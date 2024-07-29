@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { updateUser } from "../../services/api";
 import { Form, Input, SubmitBtn } from "../NewWorkerForm/NewWorkerForm.styled";
 
-export const UpdateUserForm = ({ workerId, person }) => {
+export const UpdateUserForm = ({ workerId, person, userRefetch }) => {
   const [formData, setFormData] = useState({
     name: person?.name,
     position: person?.position,
@@ -27,6 +27,9 @@ export const UpdateUserForm = ({ workerId, person }) => {
       position: "",
       image: "",
     });
+    setTimeout(() => {
+      userRefetch();
+    }, 1500);
   };
 
   return (
@@ -66,4 +69,5 @@ export const UpdateUserForm = ({ workerId, person }) => {
 UpdateUserForm.propTypes = {
   workerId: PropTypes.string,
   person: PropTypes.object,
+  userRefetch: PropTypes.func,
 };

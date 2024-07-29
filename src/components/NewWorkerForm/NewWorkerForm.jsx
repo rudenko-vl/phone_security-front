@@ -1,10 +1,12 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { createWorker } from "../../services/api.js";
 import { Toaster } from "react-hot-toast";
 import { Form, Input, SubmitBtn, Container } from "./NewWorkerForm.styled.jsx";
 import { Button } from "@mui/material";
+import { IoPersonAdd } from "react-icons/io5";
 
-export const NewWorkerForm = () => {
+export const NewWorkerForm = ({ userRefetch }) => {
   const [formData, setFormData] = useState({
     name: "",
     position: "",
@@ -31,16 +33,21 @@ export const NewWorkerForm = () => {
       position: "",
       image: "",
     });
+    setTimeout(() => {
+      userRefetch();
+    }, 1500);
   };
 
   return (
     <Container>
       <Button
+        sx={{ width: "270px", margin: "0 auto" }}
         onClick={() => setIsVisibleForm(!isVisibleForm)}
         color="success"
         variant="contained"
       >
         {isVisibleForm ? "Скрыть форму" : "Добавить сотрудника"}
+        <IoPersonAdd style={{ marginLeft: "25px" }} />
       </Button>
       {isVisibleForm && (
         <Form onSubmit={handleSubmitUser}>
@@ -82,4 +89,8 @@ export const NewWorkerForm = () => {
       <Toaster />
     </Container>
   );
+};
+
+NewWorkerForm.propTypes = {
+  userRefetch: PropTypes.func,
 };

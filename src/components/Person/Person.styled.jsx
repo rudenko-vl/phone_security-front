@@ -38,6 +38,16 @@ export const UserDescr = styled.div`
 
 export const BtnBox = styled.div`
   display: flex;
-  gap: 35px;
+  gap: 25px;
   margin-top: 20px;
+`;
+
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  > h2 {
+    margin-bottom: 30px;
+  }
 `;

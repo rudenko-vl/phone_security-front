@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Header, WorkersList, NewWorkerForm } from "../components";
+import { Header, WorkersList } from "../components";
 import { Button } from "@mui/material";
+import { FaLock } from "react-icons/fa";
 import {
   Form,
   Input,
@@ -49,12 +50,12 @@ const Private = () => {
             <Button
               variant="contained"
               color="error"
-              sx={{ margin: "0 auto", width: "250px" }}
+              sx={{ margin: "0 auto", width: "270px" }}
               onClick={logOut}
             >
               Заблокировать страницу
+              <FaLock style={{ marginLeft: "15px" }} />
             </Button>
-            <NewWorkerForm />
             <WorkersList />
           </Wrapper>
         </>
