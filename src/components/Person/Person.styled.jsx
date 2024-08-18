@@ -18,6 +18,7 @@ export const GadgetsWrapper = styled.div`
     text-align: center;
     font-size: 28px;
     color: #530083;
+    margin-bottom: 30px;
   }
 `;
 

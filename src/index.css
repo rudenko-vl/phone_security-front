@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #cbddff;
+  background-color: #f0ff1a;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -48,7 +48,7 @@ table {
   width: 100%;
 }
 thead {
-  background-color: yellow;
+  background-color: rgb(49, 123, 250);
 }
 thead th,
 tbody td {

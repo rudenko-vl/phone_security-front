@@ -12,7 +12,7 @@ export const HeaderBox = styled.header`
   min-height: 64px;
   padding: 0 40px;
   color: #fff;
-  background-color: #4c056c;
+  background-color: #0700c3;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;

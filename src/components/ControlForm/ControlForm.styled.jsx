@@ -3,14 +3,10 @@ import styled from "@emotion/styled";
 export const GadgetList = styled.ul`
   display: flex;
   justify-content: center;
-  background-color: white;
-  margin: 20px auto 0px auto;
-  width: 80%;
-  gap: 50px;
+  margin: 0px auto;
+  width: 75%;
+  gap: 30px;
   flex-wrap: wrap;
-  padding: 20px 40px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const GadgetItem = styled.li`
@@ -20,10 +16,11 @@ export const GadgetItem = styled.li`
   align-items: center;
   border-radius: 30px;
   padding: 5px;
-  height: 100%;
+  height: 600px;
   max-width: 400px;
   overflow: hidden;
-  box-shadow: 0px 0px 10px 3px #28287f;
+  background-color: white;
+  box-shadow: 0px 0px 10px 3px #d0ea27;
   > h3 {
     font-size: 16px;
     color: blue;
@@ -35,10 +32,30 @@ export const GadgetItem = styled.li`
   }
 `;
 
-export const InfoWrapper = styled.div`
-  width: 100%;
-  background-color: #232ca6;
+export const UserWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 30px;
+  border-radius: 30px;
   padding: 20px;
+  height: 600px;
+  width: 450px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0px 0px 10px 3px #d0ea27;
+  > img {
+    margin-top: 20px;
+    width: 100%;
+    height: 400px;
+    cursor: pointer;
+  }
+`;
+
+export const InfoWrapper = styled.div`
+  display: flex;
+  padding: 30px;
 `;
 
 export const GadgetDescription = styled.ul`
@@ -81,17 +98,6 @@ export const Error = styled.div`
   }
 `;
 
-export const UserWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 10px;
-  border: 2px solid white;
-  border-radius: 6px;
-  background-color: white;
-`;
-
 export const UserDescription = styled.div`
   display: flex;
   flex-direction: column;
@@ -99,11 +105,13 @@ export const UserDescription = styled.div`
   gap: 10px;
   > h3 {
     color: #2700ff;
-    font-size: 25px;
+    font-size: 20px;
+    text-align: center;
   }
   > p {
     color: #5a0303;
     font-weight: 700;
+    text-align: center;
   }
 `;
 

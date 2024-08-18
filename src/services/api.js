@@ -2,31 +2,16 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 // axios.defaults.baseURL = "http://localhost:3000/";
-// axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.baseURL = "https://phone-security-back.vercel.app/";
 
 export const deleteUser = async (id) => {
   try {
-    const myPromise = await axios.delete(`/users/${id}`);
-    toast.promise(
-      myPromise,
-      {
-        loading: "Удаление...",
-        success: "Успешно удалено!",
-        error: "Ошибка",
-      },
-      {
-        style: {
-          minWidth: "250px",
-        },
-        success: {
-          duration: 2000,
-          icon: "✅",
-        },
-      }
-    );
-  } catch (err) {
-    console.log(err);
+    const response = await axios.delete(`/users/${id}`);
+    console.log(response.data);
+    alert("Сотрудник успешно удален!");
+  } catch (error) {
+    console.error("Ошибка при удалении пользователя:", error);
+    alert("Ошибка при удалении");
   }
 };
 

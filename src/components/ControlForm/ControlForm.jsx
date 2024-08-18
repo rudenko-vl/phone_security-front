@@ -28,7 +28,7 @@ export const ControlForm = () => {
       if (searchInputRef) {
         searchInputRef?.current?.focus();
       }
-    }, 2000);
+    }, 1000);
   }, []);
 
   const { data: workers, isLoading } = useQuery({
