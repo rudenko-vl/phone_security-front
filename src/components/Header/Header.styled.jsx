@@ -50,3 +50,29 @@ export const PrevDiv = styled.div`
     font-size: 46px;
   }
 `;
+
+export const Logo = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+`;
+
+export const Flag = styled.div`
+  width: 40px;
+  height: 25px;
+  background-image: linear-gradient(to bottom, #230cf7 50%, #f2f20d 50%);
+`;
+
+export const LogoImg = styled.img`
+  width: 50px;
+  height: 50px;
+`;
+
+export const LogoTxt = styled.span`
+  color: #f52a2a;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0px 15px;
+`;

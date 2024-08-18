@@ -17,11 +17,11 @@ import {
   UserDescr,
   GadgetsWrapper,
   BtnBox,
+  GadgetItem,
   ModalContent,
 } from "./Person.styled";
 import {
   GadgetList,
-  GadgetItem,
   GadgetDescription,
   GadgetDescrItem,
 } from "../ControlForm/ControlForm.styled";
@@ -134,27 +134,28 @@ export const Person = ({ workerId }) => {
                       width={300}
                       height={500}
                     />
-                    <Button
-                      sx={{ margin: "20px auto" }}
-                      onClick={() => {
-                        deleteGadget(item._id, workerId);
-                        setTimeout(() => {
-                          refetch();
-                        }, 1500);
-                      }}
-                      type="button"
-                      variant="contained"
-                      color="error"
-                    >
-                      Удалить
-                    </Button>
-                    <Button
-                      onClick={() => setIsUpdGadgetForm(!isUpdGadgetForm)}
-                      variant="contained"
-                      disabled={true}
-                    >
-                      {!isUpdGadgetForm ? "Изменить гаджет" : "Скрыть форму"}
-                    </Button>
+                    <BtnBox>
+                      <Button
+                        onClick={() => {
+                          deleteGadget(item._id, workerId);
+                          setTimeout(() => {
+                            refetch();
+                          }, 1500);
+                        }}
+                        type="button"
+                        variant="contained"
+                        color="error"
+                      >
+                        Удалить
+                      </Button>
+                      <Button
+                        onClick={() => setIsUpdGadgetForm(!isUpdGadgetForm)}
+                        variant="contained"
+                        disabled={true}
+                      >
+                        {!isUpdGadgetForm ? "Изменить гаджет" : "Скрыть форму"}
+                      </Button>
+                    </BtnBox>
                     {isUpdGadgetForm && (
                       <UpdateGadgetForm
                         userId={workerId}

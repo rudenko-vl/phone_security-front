@@ -40,7 +40,7 @@ export const UserDescr = styled.div`
 export const BtnBox = styled.div`
   display: flex;
   gap: 25px;
-  margin-top: 20px;
+  margin: 20px 0px;
 `;
 
 export const ModalContent = styled.div`
@@ -50,5 +50,28 @@ export const ModalContent = styled.div`
   align-items: center;
   > h2 {
     margin-bottom: 30px;
+  }
+`;
+
+export const GadgetItem = styled.li`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px;
+  padding: 5px;
+  height: 100%;
+  max-width: 400px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0px 0px 10px 3px #d0ea27;
+  > h3 {
+    font-size: 16px;
+    color: blue;
+  }
+  > img {
+    width: 80%;
+    height: 500px;
+    cursor: pointer;
   }
 `;
