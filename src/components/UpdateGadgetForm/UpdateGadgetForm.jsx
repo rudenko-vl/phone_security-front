@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import { updateGadget } from "../../services/api";
 import { Form, Input, SubmitBtn } from "../NewWorkerForm/NewWorkerForm.styled";
 
-export const UpdateGadgetForm = ({ userId, gadgetId, person, index }) => {
+export const UpdateGadgetForm = ({
+  userId,
+  gadgetId,
+  person,
+  index,
+  refetch,
+}) => {
   const [formData, setFormData] = useState({
     brand: person?.gadgets[index].brand,
     model: person?.gadgets[index].model,
@@ -23,6 +29,7 @@ export const UpdateGadgetForm = ({ userId, gadgetId, person, index }) => {
       sn: formData?.sn,
       image: formData?.image,
     };
+
     updateGadget(userId, gadgetId, updatedGadget);
     setFormData({
       brand: "",
@@ -30,6 +37,9 @@ export const UpdateGadgetForm = ({ userId, gadgetId, person, index }) => {
       sn: "",
       image: "",
     });
+    setTimeout(() => {
+      refetch();
+    }, 1000);
   };
 
   return (
@@ -79,4 +89,5 @@ UpdateGadgetForm.propTypes = {
   gadgetId: PropTypes.string,
   person: PropTypes.object,
   index: PropTypes.number,
+  refetch: PropTypes.func,
 };

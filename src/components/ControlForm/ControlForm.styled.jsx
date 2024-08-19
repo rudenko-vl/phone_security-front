@@ -142,3 +142,11 @@ export const IntervalBtns = styled.div`
     margin-bottom: 15px;
   }
 `;
+
+export const Screensaver = styled.div`
+  height: 500px;
+  background-image: url("/ua.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+`;

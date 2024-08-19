@@ -101,7 +101,7 @@ export const updateUser = async (editUserId, editUserData) => {
   }
 };
 
-export const updateGadget = async ({ userId, gadgetId, updatedData }) => {
+export const updateGadget = async (userId, gadgetId, updatedData) => {
   try {
     const response = await axios.put(
       `/users/${userId}/gadgets/${gadgetId}`,

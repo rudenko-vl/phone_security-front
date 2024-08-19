@@ -11,6 +11,7 @@ import {
   GadgetDescription,
   GadgetDescrItem,
   InfoWrapper,
+  // Screensaver,
 } from "./ControlForm.styled";
 import { Loader } from "../../components";
 import { useQuery } from "@tanstack/react-query";
@@ -98,6 +99,7 @@ export const ControlForm = () => {
           <p>👮‍♂️</p>
         </Error>
       )}
+      {/* {isOk !== "error" && !foundUser && <Screensaver></Screensaver>} */}
       {foundUser && (
         <InfoWrapper>
           <UserWrapper>
@@ -137,8 +139,6 @@ export const ControlForm = () => {
                     <img
                       src={item.image ? item.image : "/gadget.png"}
                       alt="img"
-                      // width={300}
-                      // height={450}
                     />
                   </GadgetItem>
                 );

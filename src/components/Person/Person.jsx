@@ -151,7 +151,6 @@ export const Person = ({ workerId }) => {
                       <Button
                         onClick={() => setIsUpdGadgetForm(!isUpdGadgetForm)}
                         variant="contained"
-                        disabled={true}
                       >
                         {!isUpdGadgetForm ? "Изменить гаджет" : "Скрыть форму"}
                       </Button>
@@ -162,6 +161,7 @@ export const Person = ({ workerId }) => {
                         gadgetId={item._id}
                         person={person}
                         index={index}
+                        refetch={refetch}
                       />
                     )}
                   </GadgetItem>
