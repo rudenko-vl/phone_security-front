@@ -5,12 +5,12 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import {
   NewGadgetForm,
   UpdateUserForm,
-  UpdateGadgetForm,
+  ChangeGadget,
   Modal,
 } from "../../components";
 import { Button } from "@mui/material";
 import { Toaster } from "react-hot-toast";
-import { deleteGadget, getAll, deleteUser } from "../../services/api";
+import { getAll, deleteUser } from "../../services/api";
 import {
   Block,
   Wrapper,
@@ -29,8 +29,6 @@ import { useQuery } from "@tanstack/react-query";
 
 export const Person = ({ workerId }) => {
   const [isUpdForm, setIsUpdForm] = useState(false);
-  const [isUpdGadgetForm, setIsUpdGadgetForm] = useState(false);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -134,36 +132,13 @@ export const Person = ({ workerId }) => {
                       width={300}
                       height={500}
                     />
-                    <BtnBox>
-                      <Button
-                        onClick={() => {
-                          deleteGadget(item._id, workerId);
-                          setTimeout(() => {
-                            refetch();
-                          }, 1500);
-                        }}
-                        type="button"
-                        variant="contained"
-                        color="error"
-                      >
-                        Удалить
-                      </Button>
-                      <Button
-                        onClick={() => setIsUpdGadgetForm(!isUpdGadgetForm)}
-                        variant="contained"
-                      >
-                        {!isUpdGadgetForm ? "Изменить гаджет" : "Скрыть форму"}
-                      </Button>
-                    </BtnBox>
-                    {isUpdGadgetForm && (
-                      <UpdateGadgetForm
-                        userId={workerId}
-                        gadgetId={item._id}
-                        person={person}
-                        index={index}
-                        refetch={refetch}
-                      />
-                    )}
+                    <ChangeGadget
+                      item={item}
+                      workerId={workerId}
+                      person={person}
+                      index={index}
+                      refetch={refetch}
+                    />
                   </GadgetItem>
                 );
               })
