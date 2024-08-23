@@ -11,7 +11,7 @@ import {
   GadgetDescription,
   GadgetDescrItem,
   InfoWrapper,
-  // Screensaver,
+  Screensaver,
 } from "./ControlForm.styled";
 import { Loader } from "../../components";
 import { useQuery } from "@tanstack/react-query";
@@ -99,7 +99,7 @@ export const ControlForm = () => {
           <p>👮‍♂️</p>
         </Error>
       )}
-      {/* {isOk !== "error" && !foundUser && <Screensaver></Screensaver>} */}
+      {isOk !== "error" && !foundUser && <Screensaver></Screensaver>}
       {foundUser && (
         <InfoWrapper>
           <UserWrapper>
