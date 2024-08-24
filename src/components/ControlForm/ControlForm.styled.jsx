@@ -145,8 +145,7 @@ export const IntervalBtns = styled.div`
 
 export const Screensaver = styled.div`
   height: 500px;
-  // background-image: url("/ua.jpg");
-  background-image: url("https://ivankiv-gromada.gov.ua/attachments/cffd5066-b6cd-41c3-aa0e-cf8915eb38e9_Prapor.webp");
+  background-image: url("/ua.jpg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: contain;
