@@ -18,9 +18,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
 `;
 
 export const Input = styled.input`

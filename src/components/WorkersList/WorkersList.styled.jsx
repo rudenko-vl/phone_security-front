@@ -19,7 +19,7 @@ export const ExcelBtn = styled.button`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 30px;
   width: 100%;
   align-items: center;

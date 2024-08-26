@@ -18,7 +18,6 @@ const Private = () => {
   }, []);
 
   const correctPassword = "123";
-  // const correctPassword = process.env.REACT_APP_PAGE_PASSWORD;
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -50,11 +49,11 @@ const Private = () => {
             <Button
               variant="contained"
               color="error"
-              sx={{ margin: "0 auto", width: "270px" }}
+              sx={{ width: "100px" }}
               onClick={logOut}
             >
-              Заблокировать страницу
-              <FaLock style={{ marginLeft: "15px" }} />
+              Lock
+              <FaLock style={{ marginLeft: "10px" }} />
             </Button>
             <WorkersList />
           </Wrapper>

@@ -40,7 +40,6 @@ export const WorkersList = () => {
 
   return (
     <div>
-      <NewWorkerForm userRefetch={refetch} />
       <Toaster />
       <ButtonWrapper>
         <Tooltip text="Импорт в Excel">
@@ -60,6 +59,7 @@ export const WorkersList = () => {
           clearFilter={clearFilter}
           changeFilter={changeFilter}
         />
+        <NewWorkerForm userRefetch={refetch} />
       </ButtonWrapper>
       {!workers ? (
         <Loader size={80} />

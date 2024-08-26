@@ -19,7 +19,7 @@ export const Filter = ({ value, changeFilter, clearFilter }) => {
             label="Поиск"
             variant="filled"
             color="success"
-            sx={{ backgroundColor: "white", borderRadius: "5px" }}
+            sx={{ backgroundColor: "white", borderRadius: "5px", zIndex: "0" }}
             value={value}
             onChange={changeFilter}
           />

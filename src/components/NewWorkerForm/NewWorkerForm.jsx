@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { Form, Input, SubmitBtn, Container } from "./NewWorkerForm.styled.jsx";
 import { Button } from "@mui/material";
 import { IoPersonAdd } from "react-icons/io5";
+import { Modal } from "../../components";
 
 export const NewWorkerForm = ({ userRefetch }) => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,9 @@ export const NewWorkerForm = ({ userRefetch }) => {
     image: "",
   });
 
-  const [isVisibleForm, setIsVisibleForm] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   const handleUserChange = (e) => {
     const { name, value } = e.target;
@@ -41,16 +44,17 @@ export const NewWorkerForm = ({ userRefetch }) => {
   return (
     <Container>
       <Button
-        sx={{ width: "270px", margin: "0 auto" }}
-        onClick={() => setIsVisibleForm(!isVisibleForm)}
+        sx={{ width: "270px" }}
+        onClick={handleOpenModal}
         color="success"
         variant="contained"
       >
-        {isVisibleForm ? "Скрыть форму" : "Добавить сотрудника"}
+        Добавить сотрудника
         <IoPersonAdd style={{ marginLeft: "25px" }} />
       </Button>
-      {isVisibleForm && (
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <Form onSubmit={handleSubmitUser}>
+          <h2>Добавить сотрудника</h2>
           <div>
             <label htmlFor="name">Имя:</label>
             <Input
@@ -85,7 +89,7 @@ export const NewWorkerForm = ({ userRefetch }) => {
           </div>
           <SubmitBtn type="submit">Создать</SubmitBtn>
         </Form>
-      )}
+      </Modal>
       <Toaster />
     </Container>
   );
