@@ -37,8 +37,11 @@ export const NewWorkerForm = ({ userRefetch }) => {
       image: "",
     });
     setTimeout(() => {
-      userRefetch();
+      handleCloseModal();
     }, 1500);
+    setTimeout(() => {
+      userRefetch();
+    }, 2000);
   };
 
   return (

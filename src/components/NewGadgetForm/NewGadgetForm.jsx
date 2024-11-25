@@ -4,6 +4,9 @@ import { createGadget } from "../../services/api";
 import { Form, Input, SubmitBtn } from "../NewWorkerForm/NewWorkerForm.styled";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
+import { getAll } from "../../services/api";
+import { useQuery } from "@tanstack/react-query";
+
 export const NewGadgetForm = ({ workerId, userRefetch }) => {
   const [gadgetData, setGadgetData] = useState({
     title: "Смартфон",
@@ -12,6 +15,12 @@ export const NewGadgetForm = ({ workerId, userRefetch }) => {
     sn: "",
     image: "",
   });
+
+  const { data: workers } = useQuery({
+    queryKey: ["users"],
+    queryFn: getAll,
+  });
+  console.log(workers[0]);
 
   const reset = () => {
     setGadgetData({

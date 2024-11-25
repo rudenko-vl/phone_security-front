@@ -49,7 +49,8 @@ export const ControlForm = () => {
 
     const worker =
       workers.find((worker) => worker?.gadgets[0]?.sn === value) ||
-      workers.find((worker) => worker?.gadgets[1]?.sn === value);
+      workers.find((worker) => worker?.gadgets[1]?.sn === value) ||
+      workers.find((worker) => worker?.gadgets[2]?.sn === value);
     setFoundUser(worker ? worker : null);
   };
 
@@ -136,10 +137,7 @@ export const ControlForm = () => {
                         <p>{item.sn}</p>
                       </GadgetDescrItem>
                     </GadgetDescription>
-                    <img
-                      src={item.image ? item.image : "/gadget.png"}
-                      alt="img"
-                    />
+                    <img src={item.image ? item.image : "/1.jpg"} alt="img" />
                   </GadgetItem>
                 );
               })}

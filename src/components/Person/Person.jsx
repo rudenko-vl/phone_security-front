@@ -127,7 +127,7 @@ export const Person = ({ workerId }) => {
                       </GadgetDescrItem>
                     </GadgetDescription>
                     <img
-                      src={item.image ? item.image : "/gadget.png"}
+                      src={item.image ? item.image : "/1.jpg"}
                       alt="img"
                       width={300}
                       height={500}
@@ -150,7 +150,7 @@ export const Person = ({ workerId }) => {
       )}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <ModalContent>
-          <h2>Хотите удалить {person?.name}</h2>
+          <h2>Хотите удалить {person?.name}?</h2>
           <BtnBox>
             <Button variant="contained" color="success" onClick={userRemove}>
               Да

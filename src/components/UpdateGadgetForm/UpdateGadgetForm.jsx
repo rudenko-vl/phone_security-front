@@ -9,6 +9,7 @@ export const UpdateGadgetForm = ({
   person,
   index,
   refetch,
+  closeModal,
 }) => {
   const [formData, setFormData] = useState({
     brand: person?.gadgets[index].brand,
@@ -40,6 +41,9 @@ export const UpdateGadgetForm = ({
     setTimeout(() => {
       refetch();
     }, 1000);
+    setTimeout(() => {
+      closeModal();
+    }, 1500);
   };
 
   return (
@@ -90,4 +94,5 @@ UpdateGadgetForm.propTypes = {
   person: PropTypes.object,
   index: PropTypes.number,
   refetch: PropTypes.func,
+  closeModal: PropTypes.func,
 };
