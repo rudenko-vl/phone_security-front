@@ -2,10 +2,14 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { createWorker } from "../../services/api.js";
 import { Toaster } from "react-hot-toast";
-import { Form, Input, SubmitBtn, Container } from "./NewWorkerForm.styled.jsx";
-import { Button } from "@mui/material";
-import { IoPersonAdd } from "react-icons/io5";
-import { Modal } from "../../components";
+import {
+  Form,
+  Input,
+  SubmitBtn,
+  Container,
+  AddWorkerBtn,
+} from "./NewWorkerForm.styled.jsx";
+import { Modal, Tooltip } from "../../components";
 
 export const NewWorkerForm = ({ userRefetch }) => {
   const [formData, setFormData] = useState({
@@ -46,15 +50,9 @@ export const NewWorkerForm = ({ userRefetch }) => {
 
   return (
     <Container>
-      <Button
-        sx={{ width: "270px" }}
-        onClick={handleOpenModal}
-        color="success"
-        variant="contained"
-      >
-        Добавить сотрудника
-        <IoPersonAdd style={{ marginLeft: "25px" }} />
-      </Button>
+      <Tooltip text="Добавить сотрудника">
+        <AddWorkerBtn onClick={handleOpenModal} />
+      </Tooltip>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <Form onSubmit={handleSubmitUser}>
           <h2>Добавить сотрудника</h2>

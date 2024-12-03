@@ -78,7 +78,7 @@ export const GadgetDescrItem = styled.li`
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 500px;
+  width: 600px;
   margin: 0 auto;
   padding: 20px;
 `;
@@ -123,12 +123,20 @@ export const DefaultText = styled.h1`
 `;
 
 export const SearchInput = styled.input`
-  width: 300px;
-  height: 37px;
-  border: 2px solid #4c056c;
-  border-radius: 6px;
+  width: 370px;
+  height: 50px;
+  border: 3px solid #37076d;
+  border-radius: 26px;
   padding: 10px;
   margin-right: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #060691;
+  &:focus {
+    border: none;
+    outline: none;
+    box-shadow: 3px 4px 7px rgb(235 215 215 / 92%);
+  }
 `;
 
 export const IntervalBtns = styled.div`
@@ -143,10 +151,29 @@ export const IntervalBtns = styled.div`
   }
 `;
 
-export const Screensaver = styled.div`
-  height: 500px;
-  background-image: url("/ua.jpg");
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: contain;
+// export const Screensaver = styled.div`
+//   height: 500px;
+//   background-image: url("/ua.jpg");
+//   background-repeat: no-repeat;
+//   background-position: 50% 50%;
+//   background-size: contain;
+// `;
+
+export const MyButton = styled.button`
+  padding: 10px 35px;
+  border: none;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 1.3em;
+  font-weight: 600;
+  background: #921111;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: 0.5s;
+  cursor: pointer;
+  &:hover {
+    color: #bababa;
+    background: #bc1616;
+    text-shadow: 3px 4px 7px #e3c508c8;
+  }
 `;

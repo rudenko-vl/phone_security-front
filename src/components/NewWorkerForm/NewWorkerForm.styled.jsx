@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { IoPersonAdd } from "react-icons/io5";
 
 export const Form = styled.form`
   max-width: 400px;
@@ -42,4 +43,15 @@ export const SubmitBtn = styled.button`
   &:hover {
     background-color: #45a049;
   }
+`;
+
+export const AddWorkerBtn = styled(IoPersonAdd)`
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 38px;
+  color: green;
+  border: 4px solid green;
+  padding: 8px;
+  cursor: pointer;
 `;

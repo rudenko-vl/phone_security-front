@@ -13,11 +13,14 @@ export const GadgetsWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  margin: 0 auto;
-  > h2 {
+  margin: 30px auto 0 auto;
+  background-color: #00114ddb;
+
+  > h2,
+  h3 {
     text-align: center;
     font-size: 28px;
-    color: #530083;
+    color: white;
     margin-bottom: 30px;
   }
 `;
@@ -30,6 +33,8 @@ export const Block = styled.div`
 
 export const UserDescr = styled.div`
   margin-top: 30px;
+  background-color: white;
+  padding: 15px;
   > p {
     font-size: 18px;
     font-weight: 600;

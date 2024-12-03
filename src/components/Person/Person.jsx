@@ -95,7 +95,15 @@ export const Person = ({ workerId }) => {
           )}
         </Block>
       ) : (
-        <h1 style={{ textAlign: "center", color: "red" }}>
+        <h1
+          style={{
+            marginTop: "50px",
+            textAlign: "center",
+            color: "red",
+            background: "#fff",
+            padding: "20px",
+          }}
+        >
           Сотрудник был удалён!
         </h1>
       )}

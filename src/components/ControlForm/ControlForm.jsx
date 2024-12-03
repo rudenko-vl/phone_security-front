@@ -11,11 +11,11 @@ import {
   GadgetDescription,
   GadgetDescrItem,
   InfoWrapper,
-  Screensaver,
+  MyButton,
+  // Screensaver,
 } from "./ControlForm.styled";
 import { Loader } from "../../components";
 import { useQuery } from "@tanstack/react-query";
-import { Button } from "@mui/material";
 
 export const ControlForm = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -80,8 +80,7 @@ export const ControlForm = () => {
               placeholder="Просканируйте IMEI устройства"
             />
           </label>
-          <Button
-            variant="contained"
+          <MyButton
             type="button"
             onClick={() => {
               setFoundUser(null);
@@ -90,7 +89,7 @@ export const ControlForm = () => {
             }}
           >
             Удалить
-          </Button>
+          </MyButton>
         </Wrapper>
       </form>
       {isOk === "error" && (
@@ -100,7 +99,7 @@ export const ControlForm = () => {
           <p>👮‍♂️</p>
         </Error>
       )}
-      {isOk !== "error" && !foundUser && <Screensaver></Screensaver>}
+      {/* {isOk !== "error" && !foundUser && <Screensaver></Screensaver>} */}
       {foundUser && (
         <InfoWrapper>
           <UserWrapper>

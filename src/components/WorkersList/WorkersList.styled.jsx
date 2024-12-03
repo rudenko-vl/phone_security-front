@@ -23,5 +23,10 @@ export const ButtonWrapper = styled.div`
   gap: 30px;
   width: 100%;
   align-items: center;
-  margin: 0px auto 30px auto;
+  margin: 20px auto 30px auto;
+  background-color: #151313c2;
+  padding: 5px 10px;
+  > h2 {
+    color: white;
+  }
 `;

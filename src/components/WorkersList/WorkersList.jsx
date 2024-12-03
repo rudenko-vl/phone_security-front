@@ -62,7 +62,7 @@ export const WorkersList = () => {
         <NewWorkerForm userRefetch={refetch} />
       </ButtonWrapper>
       {!workers ? (
-        <Loader size={80} />
+        <Loader size={100} />
       ) : (
         <table ref={tbl}>
           <thead>
