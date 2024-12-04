@@ -30,3 +30,16 @@ export const ButtonWrapper = styled.div`
     color: white;
   }
 `;
+
+export const Clue = styled.span`
+  cursor: pointer;
+  > svg {
+    color: #ff1852;
+    font-size: 20px;
+    transition: 0.5s;
+    &:hover {
+      color: #800784;
+      transform: scale(1.1);
+    }
+  }
+`;
