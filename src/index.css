@@ -1,7 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url("/main01.jpg");
+  /* background-image: url("/main01.jpg"); */
+  background-image: url("/snowman.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
