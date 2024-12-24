@@ -39,7 +39,6 @@ export const PrevDiv = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100%;
-  background-image: url("/security-img.jpg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
