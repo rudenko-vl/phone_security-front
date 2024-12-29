@@ -12,3 +12,4 @@ export * from "./Person/Person.jsx";
 export * from "./Tooltip/Tooltip.jsx";
 export * from "./Filter/Filter.jsx";
 export * from "./ChangeGadget/ChangeGadget.jsx";
+export * from "./ScrollButton/ScrollButton.jsx";

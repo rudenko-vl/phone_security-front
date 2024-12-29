@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
@@ -7,6 +7,7 @@ import {
   UpdateUserForm,
   ChangeGadget,
   Modal,
+  Tooltip,
 } from "../../components";
 import { Button } from "@mui/material";
 import { Toaster } from "react-hot-toast";
@@ -19,6 +20,7 @@ import {
   BtnBox,
   GadgetItem,
   ModalContent,
+  ArrowBtn,
 } from "./Person.styled";
 import {
   GadgetList,
@@ -28,6 +30,14 @@ import {
 import { useQuery } from "@tanstack/react-query";
 
 export const Person = ({ workerId }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const sectionRef = useRef(null);
+  const scrollToSection = () => {
+    sectionRef.current.scrollIntoView({ behavior: "smooth" });
+  };
   const [isUpdForm, setIsUpdForm] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => setIsModalOpen(true);
@@ -82,6 +92,9 @@ export const Person = ({ workerId }) => {
               >
                 Удалить
               </Button>
+              <Tooltip text="Список гаджетов">
+                <ArrowBtn onClick={scrollToSection}>⬇️</ArrowBtn>
+              </Tooltip>
             </BtnBox>
           </UserDescr>
           {isUpdForm ? (
@@ -110,7 +123,7 @@ export const Person = ({ workerId }) => {
       {person && (
         <GadgetsWrapper>
           <h2>Список гаджетов {person?.name}</h2>
-          <GadgetList>
+          <GadgetList ref={sectionRef}>
             {person?.gadgets.length > 0 ? (
               person?.gadgets.map((item, index) => {
                 return (

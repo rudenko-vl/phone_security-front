@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Header, WorkersList } from "../components";
+import { Header, WorkersList, ScrollButton } from "../components";
 import { Button } from "@mui/material";
 import { FaLock } from "react-icons/fa";
 import {
@@ -73,6 +73,7 @@ const Private = () => {
           </Form>
         </>
       )}
+      <ScrollButton />
     </div>
   );
 };

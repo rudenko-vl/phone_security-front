@@ -1,4 +1,4 @@
-import { Header, Person } from "../components";
+import { Header, Person, ScrollButton } from "../components";
 import { useParams } from "react-router-dom";
 
 const PersonPage = () => {
@@ -8,6 +8,7 @@ const PersonPage = () => {
     <>
       <Header />
       <Person workerId={workerId} />
+      <ScrollButton />
     </>
   );
 };

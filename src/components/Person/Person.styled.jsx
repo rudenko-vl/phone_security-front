@@ -80,3 +80,11 @@ export const GadgetItem = styled.li`
     cursor: pointer;
   }
 `;
+
+export const ArrowBtn = styled.button`
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 26px;
+  cursor: pointer;
+`;
