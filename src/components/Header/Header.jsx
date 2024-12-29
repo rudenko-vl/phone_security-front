@@ -29,6 +29,7 @@ export const Header = () => {
         Главная
       </HeaderLink>
       <HeaderLink to="/workers">Админ</HeaderLink>
+      <h1 className="blinking-text">❄️ Щасливого Нового року! ❄️ 🎄 2025 ☃️</h1>
     </HeaderBox>
   );
 };
