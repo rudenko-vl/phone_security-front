@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
+import { FcTwoSmartphones } from "react-icons/fc";
 import {
   NewGadgetForm,
   UpdateUserForm,
@@ -93,7 +94,9 @@ export const Person = ({ workerId }) => {
                 Удалить
               </Button>
               <Tooltip text="Список гаджетов">
-                <ArrowBtn onClick={scrollToSection}>⬇️</ArrowBtn>
+                <ArrowBtn onClick={scrollToSection}>
+                <FcTwoSmartphones />
+                </ArrowBtn>
               </Tooltip>
             </BtnBox>
           </UserDescr>

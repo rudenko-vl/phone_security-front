@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaArrowUp } from "react-icons/fa";
 import { ScrollToUpBtn } from "./ScrollButton.styled";
 
 export const ScrollButton = () => {
@@ -34,7 +35,7 @@ export const ScrollButton = () => {
       }}
       title="Наверх"
     >
-      🔝
+      <FaArrowUp />
     </ScrollToUpBtn>
   );
 };
