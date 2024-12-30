@@ -111,7 +111,7 @@ tbody td {
 }
 
 .blinking-text {
-  font-size: 42px;
+  font-size: 38px;
   text-shadow: 3px 4px 7px #3d16dac8;
   margin-left: 50px;
   animation: blinkingText 5s infinite;
