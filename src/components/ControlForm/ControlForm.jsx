@@ -12,7 +12,7 @@ import {
   GadgetDescrItem,
   InfoWrapper,
   MyButton,
-  // Screensaver,
+  MyUpdButton,
 } from "./ControlForm.styled";
 import { Loader } from "../../components";
 import { useQuery } from "@tanstack/react-query";
@@ -32,7 +32,11 @@ export const ControlForm = () => {
     }, 1000);
   }, []);
 
-  const { data: workers, isLoading } = useQuery({
+  const {
+    data: workers,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: getAll,
   });
@@ -90,6 +94,14 @@ export const ControlForm = () => {
           >
             Удалить
           </MyButton>
+          <MyUpdButton
+            onClick={() => {
+              setIsOk("ok");
+              refetch();
+            }}
+          >
+            Обновить
+          </MyUpdButton>
         </Wrapper>
       </form>
       {isOk === "error" && (
@@ -99,7 +111,6 @@ export const ControlForm = () => {
           <p>👮‍♂️</p>
         </Error>
       )}
-      {/* {isOk !== "error" && !foundUser && <Screensaver></Screensaver>} */}
       {foundUser && (
         <InfoWrapper>
           <UserWrapper>

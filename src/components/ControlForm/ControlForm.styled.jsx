@@ -151,29 +151,28 @@ export const IntervalBtns = styled.div`
   }
 `;
 
-// export const Screensaver = styled.div`
-//   height: 500px;
-//   background-image: url("/ua.jpg");
-//   background-repeat: no-repeat;
-//   background-position: 50% 50%;
-//   background-size: contain;
-// `;
-
 export const MyButton = styled.button`
-  padding: 10px 35px;
+  padding: 10px 20px;
   border: none;
   border-radius: 50px;
   color: #fff;
-  font-size: 1.3em;
+  font-size: 1.1em;
   font-weight: 600;
   background: #921111;
   text-decoration: none;
-  letter-spacing: 0.1em;
   transition: 0.5s;
   cursor: pointer;
   &:hover {
     color: #bababa;
     background: #bc1616;
     text-shadow: 3px 4px 7px #e3c508c8;
+  }
+`;
+
+export const MyUpdButton = styled(MyButton)`
+  background: #0b9c03;
+  margin-left: 20px;
+  &:hover {
+    background: #027731;
   }
 `;
